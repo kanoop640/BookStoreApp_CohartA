@@ -11,28 +11,27 @@ namespace Repository.IRepository
         /// <summary>
         /// Declare GetAll Methods.
         /// </summary>
-        /// <returns>AllEmployee.</returns>
+        /// <returns>AllBookItemsInCart.</returns>
         IEnumerable<CartModel> GetAllBooksInCart();
 
         /// <summary>
         /// Declare Add Method.
         /// </summary>
-        /// <param name="entity">entity.</param>
+        /// <param name="BookItem">BookItem.</param>
         /// <returns>Task.</returns>
         Task<int> AddBookToCart(CartModel BookItem);
 
         /// <summary>
         /// Declare Update method.
         /// </summary>
-        /// <param name="dbEntity">dbEntity.</param>
-        /// <param name="entity">entity.</param>
+        /// <param name="BookToUpdate">BookToUpdate.</param>
+        /// <param name="BookNewDetails">BookNewDetails.</param>
         Task<int> UpdateBookInCart(CartModel BookToUpdate, CartModel BookNewDetails);
 
         /// <summary>
         /// Declare Delete method.
         /// </summary>
-        /// <param name="entity">entity.</param>
+        /// <param name="BookId">BookId.</param>
         CartModel Delete(int BookId);
-
     }
 }
