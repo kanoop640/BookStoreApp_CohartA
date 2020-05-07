@@ -36,9 +36,9 @@ namespace Model.ModelCLasses
         public string Price { get; set; }
 
         /// <summary>
-        /// property for availability  of book
+        /// property for total number of available book
         /// </summary>
-        public string Availability { get; set; }
+        public int AvailableBooks { get; set; }
 
         /// <summary>
         /// property for the description of the book
@@ -46,12 +46,12 @@ namespace Model.ModelCLasses
         public string Description { get; set; }
 
         /// <summary>
-        /// properrty for the rating 
+        /// properrty for the ratings 
         /// </summary>
         public string Ratings { get; set; }
 
         /// <summary>
-        /// property for the rating
+        /// property for the Reviews
         /// </summary>
         public string Review { get; set; }
 
