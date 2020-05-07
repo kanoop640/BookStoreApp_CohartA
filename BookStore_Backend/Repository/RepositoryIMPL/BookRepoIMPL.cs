@@ -15,7 +15,7 @@ namespace Repository.RepositoryIMPL
         private readonly UserDBContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmployeeRepository"/> class.
+        /// Initializes a new instance of the <see cref="BookRepoIMPL"/> class.
         /// </summary>
         /// <param name="context">context.</param>
         public BookRepoIMPL(UserDBContext context)
@@ -23,11 +23,11 @@ namespace Repository.RepositoryIMPL
             this._context = context;
         }
 
-        public Task<int> AddBook(BookModel entity)
+        public Task<int> AddBook(BookModel BookItem)
         {
 
 
-            this._context.Book.Add(entity);
+            this._context.Book.Add(BookItem);
             var result = this._context.SaveChangesAsync();
             return result;
         }
@@ -35,11 +35,6 @@ namespace Repository.RepositoryIMPL
         public IEnumerable<BookModel> GetAllBook()
         {
             return this._context.Book.ToList();
-        }
-
-        public BookModel GetBookById(int id)
-        {
-            return this._context.Book.FirstOrDefault(e => e.BookId == id);
         }
     }
 }
