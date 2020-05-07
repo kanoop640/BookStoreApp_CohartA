@@ -15,17 +15,10 @@ namespace Repository.IRepository
         IEnumerable<BookModel> GetAllBook();
 
         /// <summary>
-        /// Gets the by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>Get Book by id</returns>
-        BookModel GetBookById(int id);
-
-        /// <summary>
         /// Declare Add Method.
         /// </summary>
-        /// <param name="entity">entity.</param>
+        /// <param name="BookItem">BookItem.</param>
         /// <returns>Task.</returns>
-        Task<int> AddBook(BookModel entity);
+        Task<int> AddBook(BookModel BookItem);
     }
 }
