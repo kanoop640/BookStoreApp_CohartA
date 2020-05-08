@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Manager.IManager;
 using Manager.ManagerIMPL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,9 +14,9 @@ namespace BookStoreWebAPI.Controllers
     [ApiController]
     public class BookController : ControllerBase
     {
-        private readonly BookManager bookManager;
+        private readonly IBookManager bookManager;
 
-        public BookController(BookManager bookManager)
+        public BookController(IBookManager bookManager)
         {
             this.bookManager = bookManager;
         }
@@ -34,9 +35,15 @@ namespace BookStoreWebAPI.Controllers
 
         [Route("getallbook")]
         [HttpGet]
-        public IEnumerable<BookModel> GetAllBook()
+        public IActionResult GetAllBook()
         {
-            return bookManager.GetAllBook();
+             IEnumerable < BookModel > books = this.bookManager.GetAllBook();
+             return this.Ok(books);
         }
     }
 }
+
+
+
+
+
