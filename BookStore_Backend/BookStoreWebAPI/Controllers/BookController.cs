@@ -32,7 +32,7 @@ namespace BookStoreWebAPI.Controllers
                 return this.BadRequest();
         }
 
-        [Route("getallemployee")]
+        [Route("getallbook")]
         [HttpGet]
         public IEnumerable<BookModel> GetAllBook()
         {
