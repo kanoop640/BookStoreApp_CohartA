@@ -43,6 +43,7 @@ namespace BookStoreWebAPI
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IBookRepo, BookRepoIMPL>();
+            services.AddTransient<IBookRepo, BookRepoIMPL>();
 
             ILoggerFactory loggerFactory = new LoggerFactory();
             loggerFactory.AddDebug();
