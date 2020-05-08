@@ -26,7 +26,6 @@ namespace Repository.RepositoryIMPL
         public Task<int> AddBook(BookModel BookItem)
         {
 
-
             this._context.Book.Add(BookItem);
             var result = this._context.SaveChangesAsync();
             return result;
