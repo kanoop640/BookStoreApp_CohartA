@@ -1,5 +1,6 @@
 ﻿using Manager.IManager;
 using Model.ModelCLasses;
+using Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,19 +10,19 @@ namespace Manager.ManagerIMPL
 {
     public class BookManager : IBookManager
     {
-        private readonly IBookManager bookManager;
-        public BookManager(IBookManager bookManager)
+        private readonly IBookRepo _bookRepository;
+        public BookManager( IBookRepo _bookRepository)
         {
-            this.bookManager = bookManager;
+            this._bookRepository = _bookRepository;
         }
         public Task<int> AddBook(BookModel entity)
         {
-            return bookManager.AddBook(entity);
+            return _bookRepository.AddBook(entity);
         }
 
         public IEnumerable<BookModel> GetAllBook()
         {
-            return bookManager.GetAllBook();
+            return _bookRepository.GetAllBook();
         }
     }
 }
