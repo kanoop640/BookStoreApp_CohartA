@@ -15,6 +15,8 @@ using Repository.Context;
 using Repository.IRepository;
 using Repository.RepositoryIMPL;
 using Microsoft.OpenApi.Models;
+using Manager.IManager;
+using Manager.ManagerIMPL;
 
 namespace BookStoreWebAPI
 {
@@ -45,6 +47,7 @@ namespace BookStoreWebAPI
             services.AddTransient<IBookRepo, BookRepoIMPL>();
             services.AddTransient<IBookRepo, BookRepoIMPL>();
             services.AddTransient<ICartRepo,CartRepoIMPL>();
+            services.AddTransient<IBookManager,BookManager>();
 
             ILoggerFactory loggerFactory = new LoggerFactory();
             loggerFactory.AddDebug();
