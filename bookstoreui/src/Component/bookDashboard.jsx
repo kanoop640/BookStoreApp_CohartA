@@ -9,7 +9,10 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class BookDashboard extends Component {
 
-    
+    // constructor(props){
+    //     super(props)
+    //     console.log(props.books)
+    // }
 
     render() {
         return (
@@ -28,46 +31,46 @@ class BookDashboard extends Component {
                     </div>
                 </div>
                 <div className='display-books'>
-                {
-                    this.props.books.map((data)=>{
-                return(
-                            <Card className='note-card' >
-                                <Tooltip  style={styles.hover} title={data.description}>
-                                <div className="image-div" >
-                                  <img src={data.image} style={styles.imgStyle}></img>
-                                </div>
-                                </Tooltip>
-                        
-                            <CardContent id='card-detail'>
-                                <Typography  variant="h7" component="h4">
-                                    {data.bookName}
-                                            </Typography>
-                                <Typography>
-                                    {data.authorName}
-                                            </Typography>
-                                <Typography>
-                                    {data.price}
-                                            </Typography>
-                            </CardContent>
-                        <CardActions className="buttons">
-                            <Button 
-                            variant='outlined'
-                                color='default'
-                            > Add to cart</Button>
+                    {
+                        this.props.books.map((data) => {
+                            return (
+                                <Card className='note-card' >
+                                    <Tooltip style={styles.hover} title={data.description}>
+                                        <div className="image-div" >
+                                            <img src={data.image} style={styles.imgStyle}></img>
+                                        </div>
+                                    </Tooltip>
 
-                            <Button
-                                variant='outlined'
-                                color='default'
-                            > Wishlist</Button>
-                        </CardActions>
-                    </Card>
-                );
-                    })
-                }
-                    
+                                    <CardContent id='card-detail'>
+                                        <Typography variant="h7" component="h4">
+                                            {data.title}
+                                        </Typography>
+                                        <Typography>
+                                            {data.author}
+                                        </Typography>
+                                        <Typography>
+                                            {data.price}
+                                        </Typography>
+                                    </CardContent>
+                                    <CardActions className="buttons">
+                                        <Button
+                                            variant='outlined'
+                                            color='default'
+                                        > Add to cart</Button>
+
+                                        <Button
+                                            variant='outlined'
+                                            color='default'
+                                        > Wishlist</Button>
+                                    </CardActions>
+                                </Card>
+                            );
+                        })
+                    }
+
                 </div>
                 <div className='pagination-div'>
-                    <Pagination  count={10} color="primary" />
+                    <Pagination count={10} color="primary" />
                 </div>
             </div>
         )
@@ -76,13 +79,13 @@ class BookDashboard extends Component {
 
 }
 const styles = {
-    imgStyle:{
-        height:170,
-        width:160,
+    imgStyle: {
+        height: 170,
+        width: 160,
     },
-    hover:{
-        heigth:50,
-        wigth:50,
+    hover: {
+        heigth: 50,
+        wigth: 50,
     }
 }
 export default BookDashboard;
