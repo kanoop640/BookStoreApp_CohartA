@@ -10,7 +10,7 @@ class Dashboard extends Component{
             <div styles={{flexDirection:"column", justifyContent:"flex-start", alignItems:"end", flex:1 }}>
                 <Header/>
                 <Mycart/>
-            {/* <Footer styles={{position:"fixed"}}/> */}
+            <Footer styles={{position:"fixed"}}/>
            
             </div>
         )
