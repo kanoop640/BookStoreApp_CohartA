@@ -1,9 +1,15 @@
-﻿
+﻿/// <summary>
+/// IRepository namespace
+/// </summary>
 namespace Repository.IRepository
 {
     using Model.ModelCLasses;
     using System.Collections.Generic;
     using System.Threading.Tasks;
+
+    /// <summary>
+    /// inteface ICartRepo
+    /// </summary>
     public interface ICartRepo
     {
         /// <summary>
@@ -30,6 +36,6 @@ namespace Repository.IRepository
         /// Declare Delete method.
         /// </summary>
         /// <param name="BookId">BookId.</param>
-        CartModel DeleteCartItem(int BookId);
+        CartModel DeleteCartItem(long BookId);
     }
 }

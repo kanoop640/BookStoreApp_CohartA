@@ -1,4 +1,6 @@
-﻿
+﻿/// <summary>
+/// namespace for RepositoryIMPL
+/// </summary>
 namespace Repository.RepositoryIMPL
 {
     using Model.ModelCLasses;
@@ -8,8 +10,14 @@ namespace Repository.RepositoryIMPL
     using System.Linq;
     using System.Threading.Tasks;
 
+    /// <summary>
+    /// Implementation class for ICartRepo interface
+    /// </summary>
     public class CartRepoIMPL : ICartRepo
     {
+        /// <summary>
+        /// instance reference for UserDBContext
+        /// </summary>
         private readonly UserDBContext _context;
 
         /// <summary>
@@ -20,6 +28,12 @@ namespace Repository.RepositoryIMPL
         {
             this._context = context;
         }
+
+        /// <summary>
+        /// Add cart item to CartContext
+        /// </summary>
+        /// <param name="CartItem"></param>
+        /// <returns>int</returns>
         public Task<int> AddCartItem(CartModel CartItem)
         {
             this._context.CartContext.Add(CartItem);
@@ -27,7 +41,12 @@ namespace Repository.RepositoryIMPL
             return result;
         }
 
-        public CartModel DeleteCartItem(int BookId)
+        /// <summary>
+        /// Delete Cart item from CartContext
+        /// </summary>
+        /// <param name="BookId"></param>
+        /// <returns></returns>
+        public CartModel DeleteCartItem(long BookId)
         {
             CartModel cartModel = this._context.CartContext.Find(BookId);
             if (cartModel != null)
@@ -38,11 +57,21 @@ namespace Repository.RepositoryIMPL
             return cartModel;
         }
 
+        /// <summary>
+        /// Get All Cart Item from CartContext
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<CartModel> GetAllCartItem()
         {
              return  this._context.CartContext.ToList();
         }
 
+        /// <summary>
+        /// Update the number of books in cartItem
+        /// </summary>
+        /// <param name="OldBookDetails"></param>
+        /// <param name="NewBookDetails"></param>
+        /// <returns></returns>
         public Task<int> UpdateCartItem(CartModel OldBookDetails, CartModel NewBookDetails)
         {
             OldBookDetails.Count  = NewBookDetails.Count;

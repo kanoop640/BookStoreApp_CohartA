@@ -1,9 +1,14 @@
-﻿
+﻿/// <summary>
+/// namespace for ModelClass
+/// </summary>
 namespace Model.ModelCLasses
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
+    /// <summary>
+    /// Model Class for Book
+    /// </summary>
     public class BookModel
     {
         /// <summary>

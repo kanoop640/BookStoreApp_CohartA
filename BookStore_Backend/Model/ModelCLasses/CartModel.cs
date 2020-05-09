@@ -1,8 +1,14 @@
-﻿
+﻿/// <summary>
+/// namespace for modelclass
+/// </summary>
 namespace Model.ModelCLasses
 {
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
+
+    /// <summary>
+    /// model class for CartModel
+    /// </summary>
     public class CartModel
     {
         /// <summary>
