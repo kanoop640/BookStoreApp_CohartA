@@ -45,10 +45,11 @@ namespace Repository.RepositoryIMPL
              return  this._context.CartContext.ToList();
         }
 
-        public Task<int> UpdateCartItem(CartModel BookToUpdate, CartModel BookNewDetails)
+        public Task<int> UpdateCartItem(CartModel OldBookDetails, CartModel NewBookDetails)
         {
-            BookToUpdate.Count  = BookNewDetails.Count;
-            BookToUpdate.TotalPrice  = BookNewDetails.TotalPrice;
+            OldBookDetails.Count  = NewBookDetails.Count;
+            if (OldBookDetails.Count <= 0)
+                DeleteCartItem( OldBookDetails.BookID );
             var result = this._context.SaveChangesAsync();
             return result; 
         }
