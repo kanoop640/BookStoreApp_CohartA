@@ -12,14 +12,14 @@ namespace Repository.IRepository
         /// Declare GetAll Methods.
         /// </summary>
         /// <returns>AllBookItemsInCart.</returns>
-        IEnumerable<CartModel> GetAllCartItemInCartContext();
+        IEnumerable<CartModel> GetAllCartItemFromCartContext();
 
         /// <summary>
         /// Declare Add Method.
         /// </summary>
         /// <param name="BookItem">BookItem.</param>
         /// <returns>Task.</returns>
-        Task<int> AddBookToCart(CartModel BookItem);
+        Task<int> AddCartItemToCartContext(CartModel CartItem);
 
         /// <summary>
         /// Declare Update method.

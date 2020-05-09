@@ -21,9 +21,9 @@ namespace Repository.RepositoryIMPL
         {
             this._context = context;
         }
-        public Task<int> AddBookToCart(CartModel BookItem)
+        public Task<int> AddCartItemToCartContext(CartModel CartItem)
         {
-            this._context.Cart.Add(BookItem);
+            this._context.CartContext.Add(CartItem);
             var result = this._context.SaveChangesAsync();
             return result;
         }
