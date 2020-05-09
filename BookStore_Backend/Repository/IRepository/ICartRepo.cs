@@ -1,11 +1,9 @@
-﻿using Model.ModelCLasses;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Repository.IRepository
 {
+    using Model.ModelCLasses;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
     public interface ICartRepo
     {
         /// <summary>

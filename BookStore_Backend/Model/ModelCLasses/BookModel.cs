@@ -11,7 +11,7 @@ namespace Model.ModelCLasses
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int BookId { get; set; }
+        public long BookId { get; set; }
 
         /// <summary>
         /// property for name title of the book

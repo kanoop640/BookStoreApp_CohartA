@@ -4,10 +4,8 @@ namespace Repository.RepositoryIMPL
     using Model.ModelCLasses;
     using Repository.Context;
     using Repository.IRepository;
-    using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
     using System.Threading.Tasks;
 
     public class CartRepoIMPL : ICartRepo
@@ -49,7 +47,7 @@ namespace Repository.RepositoryIMPL
         {
             OldBookDetails.Count  = NewBookDetails.Count;
             if (OldBookDetails.Count <= 0)
-                DeleteCartItem( OldBookDetails.BookID );
+                DeleteCartItem( OldBookDetails.BookId );
             var result = this._context.SaveChangesAsync();
             return result; 
         }

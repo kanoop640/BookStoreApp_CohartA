@@ -10,12 +10,12 @@ namespace Model.ModelCLasses
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int CartId { get; set; }
+        public long CartId { get; set; }
 
         /// <summary>
         /// property for BookId.
         /// </summary>
-        public int BookId { get; set; }
+        public long BookId { get; set; }
 
         /// <summary>
         /// property for count i.e number of books selected.
