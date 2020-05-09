@@ -36,7 +36,7 @@ namespace Model.ModelCLasses
         /// <summary>
         /// property for the price of the book
         /// </summary>
-        public string Price { get; set; }
+        public int Price { get; set; }
 
         /// <summary>
         /// property for total number of available book
