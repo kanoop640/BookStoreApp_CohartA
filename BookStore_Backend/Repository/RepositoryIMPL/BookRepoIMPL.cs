@@ -26,14 +26,14 @@ namespace Repository.RepositoryIMPL
         public Task<int> AddBook(BookModel BookItem)
         {
 
-            this._context.Book.Add(BookItem);
+            this._context.BookContext.Add(BookItem);
             var result = this._context.SaveChangesAsync();
             return result;
         }
 
         public IEnumerable<BookModel> GetAllBook()
         {
-            return this._context.Book.ToList();
+            return this._context.BookContext.ToList();
         }
     }
 }
