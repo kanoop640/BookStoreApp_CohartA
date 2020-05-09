@@ -11,7 +11,39 @@ class Header extends Component {
     render() {
         return (
 
-           
+            <div className='header' >   
+                <div className='book-logo-search-div'>
+                    <div className='book-logo-div'>
+                    <MenuBookIcon/>
+                    </div>
+                    <div className='book-tittle'>
+                    <Typography variant='h4'>
+                        Book Store
+                    </Typography>
+                    </div>
+                    <div className='search-div'>
+                    <TextField
+                     className='search-textfield'
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SearchIcon />
+                            </InputAdornment>
+                        ),
+                    }} 
+                    id="outlined-basic" 
+                     />
+                    </div>
+                    </div> 
+                <div className='cart-wishlist-div'>
+                <div className='cart-div'>
+                <ShoppingCartIcon/> 
+                </div>
+                <div className='wishlist-div'>
+                <FavoriteIcon/>
+                </div>
+                </div>
+            </div>
         )
     }
 }
