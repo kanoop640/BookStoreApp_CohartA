@@ -1,26 +1,13 @@
+
 import React, { Component } from 'react'
 import MenuBookIcon from '@material-ui/icons/MenuBook';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import TextField from '@material-ui/core/TextField';
 import SearchIcon from '@material-ui/icons/Search';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import Typography from '@material-ui/core/Typography';
 import ShoppingCartOutlinedIcon from '@material-ui/icons/ShoppingCartOutlined';
 import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutlined';
 import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import CancelRoundedIcon from '@material-ui/icons/CancelRounded';
-import SettingsRoundedIcon from '@material-ui/icons/SettingsRounded';
-import RefreshRoundedIcon from '@material-ui/icons/RefreshRounded';
-import ViewStreamRoundedIcon from '@material-ui/icons/ViewStreamRounded';
-import AppsRoundedIcon from '@material-ui/icons/AppsRounded';
-import AccountCircleRoundedIcon from '@material-ui/icons/AccountCircleRounded';
-import ViewColumnIcon from '@material-ui/icons/ViewColumn';
-import CloseOutlinedIcon from '@material-ui/icons/CloseOutlined';
 class Header extends Component {
     render() {
         return (
