@@ -26,7 +26,7 @@ namespace Repository.IRepository
         /// </summary>
         /// <param name="BookToUpdate">BookToUpdate.</param>
         /// <param name="BookNewDetails">BookNewDetails.</param>
-        Task<int> UpdateCartItem(CartModel BookToUpdate, CartModel BookNewDetails);
+        Task<int> UpdateCartItem(CartModel OldBookDetails, CartModel NewBookDetals);
 
         /// <summary>
         /// Declare Delete method.
