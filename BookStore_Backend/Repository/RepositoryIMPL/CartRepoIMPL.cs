@@ -39,9 +39,9 @@ namespace Repository.RepositoryIMPL
             return cartModel;
         }
 
-        public IEnumerable<CartModel> GetAllBooksInCart()
+        public IEnumerable<CartModel> GetAllCartItemFromCartContext()
         {
-            return this._context.Cart.ToList();
+            return this._context.CartContext.ToList();
         }
 
         public Task<int> UpdateBookInCart(CartModel BookToUpdate, CartModel BookNewDetails)

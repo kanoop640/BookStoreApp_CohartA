@@ -12,7 +12,7 @@ namespace Repository.IRepository
         /// Declare GetAll Methods.
         /// </summary>
         /// <returns>AllBookItemsInCart.</returns>
-        IEnumerable<CartModel> GetAllBooksInCart();
+        IEnumerable<CartModel> GetAllCartItemInCartContext();
 
         /// <summary>
         /// Declare Add Method.
