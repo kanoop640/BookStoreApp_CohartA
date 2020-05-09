@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
+﻿
 namespace Model.ModelCLasses
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     public class CartModel
     {
         /// <summary>
@@ -16,29 +13,9 @@ namespace Model.ModelCLasses
         public int CartId { get; set; }
 
         /// <summary>
-        /// property for name title of the book
+        /// property for BookId.
         /// </summary>
-        public string Title { get; set; }
-
-        /// <summary>
-        /// property for the Authors of the book
-        /// </summary>
-        public string Authors { get; set; }
-
-        /// <summary>
-        /// property for the image of the book
-        /// </summary>
-        public string Image { get; set; }
-
-        /// <summary>
-        /// property for the price of the book
-        /// </summary>
-        public double Price { get; set; }
-
-        /// <summary>
-        /// property for TotalPrices
-        /// </summary>
-        public double TotalPrice { get; set; } 
+        public int BookId { get; set; }
 
         /// <summary>
         /// property for count i.e number of books selected.
