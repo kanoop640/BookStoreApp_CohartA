@@ -1,14 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
+import Dashboard from './Component/Dashboard'
 import './App.css';
-import Header from './Component/header'
+
 function App() {
   return (
-    <div className="App">
-    <Header/>
-    </div>
-   
-  );
+    <Router>
+      <Switch>
+      <Route path='/' component={Dashboard}></Route>
+      </Switch>
+    </Router>
+      )
 }
 
 export default App;
