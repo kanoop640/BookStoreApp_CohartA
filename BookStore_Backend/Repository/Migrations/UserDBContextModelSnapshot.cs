@@ -20,7 +20,7 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Model.ModelCLasses.BookModel", b =>
                 {
-                    b.Property<int>("BookId")
+                    b.Property<long>("BookId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -42,30 +42,22 @@ namespace Repository.Migrations
 
                     b.HasKey("BookId");
 
-                    b.ToTable("Book");
+                    b.ToTable("BookContext");
                 });
 
             modelBuilder.Entity("Model.ModelCLasses.CartModel", b =>
                 {
-                    b.Property<int>("CartId")
+                    b.Property<long>("CartId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Authors");
+                    b.Property<long>("BookId");
 
                     b.Property<int>("Count");
 
-                    b.Property<string>("Image");
-
-                    b.Property<double>("Price");
-
-                    b.Property<string>("Title");
-
-                    b.Property<double>("TotalPrice");
-
                     b.HasKey("CartId");
 
-                    b.ToTable("Cart");
+                    b.ToTable("CartContext");
                 });
 #pragma warning restore 612, 618
         }
