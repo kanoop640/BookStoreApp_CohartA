@@ -3,6 +3,7 @@
 /// </summary>
 namespace Repository.IRepository
 {
+    using Microsoft.AspNetCore.Mvc;
     using Model.ModelCLasses;
     using System.Collections.Generic;
     using System.Threading.Tasks;
@@ -16,26 +17,26 @@ namespace Repository.IRepository
         /// Declare GetAll Methods.
         /// </summary>
         /// <returns>AllBookItemsInCart.</returns>
-        IEnumerable<CartModel> GetAllCartItem();
+        IEnumerable<CartModel> GetCartContext();
 
         /// <summary>
         /// Declare Add Method.
         /// </summary>
         /// <param name="BookItem">BookItem.</param>
         /// <returns>Task.</returns>
-        Task<int> AddCartItem(CartModel CartItem);
+        Task<int> AddCartModel(CartModel cartModel);
 
         /// <summary>
         /// Declare Update method.
         /// </summary>
         /// <param name="BookToUpdate">BookToUpdate.</param>
         /// <param name="BookNewDetails">BookNewDetails.</param>
-        Task<int> UpdateCartItem(CartModel OldBookDetails, CartModel NewBookDetals);
+        Task<int> UpdateCartModel(CartModel OldBookDetails);
 
         /// <summary>
         /// Declare Delete method.
         /// </summary>
         /// <param name="BookId">BookId.</param>
-        CartModel DeleteCartItem(long BookId);
+        Task<IActionResult> DeleteCartModel(long BookId);
     }
 }
