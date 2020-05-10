@@ -31,7 +31,7 @@ namespace BookStoreWebAPI.Controllers
 
         // POST: api/Cart
         [Route("updatecartmodel")]
-        [HttpPost]
+        [HttpPut]
         public async Task<IActionResult> UpdateCartModel( CartModel cartModelnew)
         {
             
@@ -48,7 +48,8 @@ namespace BookStoreWebAPI.Controllers
         [HttpDelete]
         public async Task<IActionResult> DeleteCartModel( long id)
         {
-            return await this._cartManager.DeleteCartModel(id);
+            var cartModel = await this._cartManager.DeleteCartModel(id);
+            return Ok(cartModel);
        }
 
 
