@@ -30,7 +30,7 @@ namespace BookStoreWebAPI.Controllers
             {
                 return this.Ok(bookModel);
             }
-                return this.BadRequest();
+                return BadRequest();
         }
 
         [Route("getallbook")]
