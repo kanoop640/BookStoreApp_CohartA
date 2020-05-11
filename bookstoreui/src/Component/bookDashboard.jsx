@@ -9,10 +9,11 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class BookDashboard extends Component {
 
-    // constructor(props){
-    //     super(props)
-    //     console.log(props.books)
-    // }
+    constructor(props){
+        super(props)
+        console.log(props.books)
+    }
+    
 
     render() {
         return (
@@ -41,24 +42,28 @@ class BookDashboard extends Component {
                                         </div>
                                     </Tooltip>
 
-                                    <CardContent id='card-detail'>
+                                    <CardContent id='card-detail' style={styles.cardDetails}>
                                         <Typography variant="h7" component="h4">
                                             {data.title}
                                         </Typography>
-                                        <Typography>
+                                        <Typography variant="h10">
                                             {data.author}
                                         </Typography>
-                                        <Typography>
+                                        <Typography  varient="h10">
                                             {data.price}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions className="buttons">
-                                        <Button
+                                    <CardActions className="">
+                                        <Button className="MuiButton-outlined"
+                                        style={styles.cart}
                                             variant='outlined'
                                             color='default'
+                                            onClick={()=>this.handleAddButton}
                                         > Add to cart</Button>
 
                                         <Button
+                                        className="MuiButton-outlined"
+                                        style={styles.cart}
                                             variant='outlined'
                                             color='default'
                                         > Wishlist</Button>
@@ -70,7 +75,7 @@ class BookDashboard extends Component {
 
                 </div>
                 <div className='pagination-div'>
-                    <Pagination count={10} color="primary" />
+                    <Pagination count={10} color="primary" className="page"/>
                 </div>
             </div>
         )
@@ -81,11 +86,21 @@ class BookDashboard extends Component {
 const styles = {
     imgStyle: {
         height: 170,
-        width: 160,
+        width: 115,
     },
     hover: {
         heigth: 50,
         wigth: 50,
+    },
+    cart:{
+    borderWidth:1,
+    paddingLeft:3,
+    paddingRight:4,
+    },
+    cardDetails:{
+    height: 45,
+    paddingTop: 4,
+    paddingLeft: 10,
     }
 }
 export default BookDashboard;
