@@ -16,26 +16,26 @@ namespace Manager.ManagerIMPL
         {
             this._cartRepo = cartRepo;
         }
-
-        public  Task<int> AddCartModel(CartModel cartModel)
-        {
-            return  this._cartRepo.AddCartModel(cartModel);
-        }
-
-        public async Task<IActionResult> DeleteCartModel(long BookId)
-        {
-           var result = await this._cartRepo.DeleteCartModel(BookId);
-            return  result;
-        }
-
         public IEnumerable<CartModel> GetCartContext()
         {
             return this._cartRepo.GetCartContext();
         }
 
-        public async Task<int> UpdateCartModel(CartModel newCartModel )
+        public async Task<int> AddCartModel(CartModel cartModel)
+        {
+            return await this._cartRepo.AddCartModel(cartModel);
+        }
+
+        public async Task<int> UpdateCartModel(CartModel newCartModel)
         {
             return await this._cartRepo.UpdateCartModel(newCartModel);
         }
+
+        public Task<CartModel> DeleteCartModel(long cardId)
+        {
+          return  this._cartRepo.DeleteCartModel(cardId);
+        }
+
+       
     }
 }
