@@ -33,6 +33,6 @@ namespace Manager.IManager
         /// Declare Delete method.
         /// </summary>
         /// <param name="entity">entity.</param>
-        Task<IActionResult> DeleteCartModel(long BookId);
+        Task<CartModel> DeleteCartModel(long BookId);
     }
 }
