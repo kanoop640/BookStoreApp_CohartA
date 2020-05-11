@@ -9,6 +9,18 @@ namespace Manager.IManager
 {
     public interface ICartManager
     {
-       
+        /// <summary>
+        /// Declare GetAll Methods.
+        /// </summary>
+        /// <returns>AllEmployee.</returns>
+        IEnumerable<CartModel> GetCartContext();
+
+        /// <summary>
+        /// Declare Add Method.
+        /// </summary>
+        /// <param name="entity">entity.</param>
+        /// <returns>Task.</returns>
+        Task<int> AddCartModel(CartModel BookItem);
+
     }
 }
