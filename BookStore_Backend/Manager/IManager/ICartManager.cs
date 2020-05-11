@@ -22,5 +22,12 @@ namespace Manager.IManager
         /// <returns>Task.</returns>
         Task<int> AddCartModel(CartModel BookItem);
 
+        /// <summary>
+        /// Declare Update method.
+        /// </summary>
+        /// <param name="dbEntity">dbEntity.</param>
+        /// <param name="entity">entity.</param>
+        Task<int> UpdateCartModel(CartModel newCartModel);
+
     }
 }
