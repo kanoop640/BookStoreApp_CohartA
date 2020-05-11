@@ -24,7 +24,7 @@ namespace Repository.RepositoryIMPL
         private readonly UserDBContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmployeeRepository"/> class.
+        /// Initializes a new instance of the <see cref="CartRepository"/> class.
         /// </summary>
         /// <param name="context">context.</param>
         public CartRepoIMPL(UserDBContext context)
@@ -37,49 +37,12 @@ namespace Repository.RepositoryIMPL
         /// </summary>
         /// <param name="CartItem"></param>
         /// <returns>int</returns>
-        public  Task<int> AddCartModel(CartModel cartModel)
+        public Task<int> AddCartModel(CartModel cartModel)
         {
             this._context.CartContext.Add(cartModel);
             var result =  this._context.SaveChangesAsync();
             return result;
         }
-
-        public Task<int> DeleteCartModel(long BookId)
-        {
-            CartModel cartModel = this._context.CartContext.Find(BookId);
-            if (cartModel != null)
-            {
-                _context.CartContext.Remove(cartModel);
-               var result = this._context.SaveChanges();
-                return Task.FromResult(result);
-            }
-            return Task.FromResult(0);
-        }
-
-        /*/// <summary>
-        /// Delete Cart item from CartContext
-        /// </summary>
-        /// <param name="BookId"></param>
-        /// <returns></returns>
-        public async Task<int> DeleteCartModel(long BookId)
-        {
-            int result=0;
-            var cartModel = await _context.CartContext.FindAsync(BookId);
-            if (cartModel != null)
-            {
-                _context.CartContext.Remove(cartModel);
-                result = await _context.SaveChangesAsync();
-            }
-            return await Task.FromResult(result);
-
-            *//*CartModel cartModel = await this._context.CartContext.FindAsync(BookId);
-            if (cartModel != null)
-            {
-                this._context.CartContext.Remove(cartModel);
-                await this._context.SaveChangesAsync();
-            }
-            return *//*
-        }*/
 
         /// <summary>
         /// Get All Cart Item from CartContext
@@ -102,19 +65,30 @@ namespace Repository.RepositoryIMPL
             {
                 var oldCartModel = await _context.CartContext.FindAsync(newCartModel.CartId);
                 oldCartModel.Count = newCartModel.Count;
-             /*   if (OldBookDetails.Count <= 0)
-                    DeleteCartModel(OldBookDetails.BookId);*/
+                if (oldCartModel.Count <= 0)
+                    await DeleteCartModel(oldCartModel.BookId);
                 return await this._context.SaveChangesAsync();
             }
             catch(Exception)
             {
-                return await Task.FromResult(0); 
+                return -1; 
             }
         }
 
-        Task<IActionResult> ICartRepo.DeleteCartModel(long BookId)
+        /// <summary>
+        /// Delete Cart Model item in CartContext
+        /// </summary>
+        /// <param name="cartId"></param>
+        /// <returns></returns>
+        public async Task<CartModel> DeleteCartModel(long cartId)
         {
-            throw new NotImplementedException();
+            CartModel cartModel = this._context.CartContext.Find(cartId);
+            if (cartModel != null)
+            {
+                this._context.CartContext.Remove(cartModel);
+                await this._context.SaveChangesAsync();
+            }
+            return cartModel;
         }
     }
 }
