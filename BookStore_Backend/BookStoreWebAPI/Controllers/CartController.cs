@@ -29,6 +29,16 @@ namespace BookStoreWebAPI.Controllers
             return cartContext;
         }
 
-       
+        [Route("addcartmodel")]
+        [HttpPost]
+        public async Task<IActionResult> AddBook(CartModel bookModel)
+        {
+            var result = await this._cartManager.AddCartModel(bookModel);
+            if (result == 1)
+            {
+                return this.Ok(bookModel);
+            }
+            return BadRequest();
+        }
     }
 }
