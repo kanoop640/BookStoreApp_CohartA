@@ -4,6 +4,7 @@ import Header from './header'
 import dragon from '../assets/dragon.jpg'
 import Footer from './footer'
 import { getBook } from '../Service/service'
+import OrderSummery from'./orderSummery';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class Dashboard extends Component {
    func =async() =>{
            console.log("test")
             let result = await getBook()
+            console.log(result)
             this.setState({result})
         }
     componentDidMount() {
@@ -34,8 +36,9 @@ class Dashboard extends Component {
         return (
             <div>
                 <Header />
-                <BookDashboard books={this.state.result} />
+                <BookDashboard books={this.state.result}/>
                 <Footer />
+                <OrderSummery/>
             </div>
         )
 
