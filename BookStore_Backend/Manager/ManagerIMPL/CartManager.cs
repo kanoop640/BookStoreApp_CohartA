@@ -11,31 +11,31 @@ namespace Manager.ManagerIMPL
 {
    public class CartManager : ICartManager
     {
-        private readonly ICartRepo _cartRepo;
-        public CartManager(ICartRepo cartRepo)
+        private readonly ICartManager cartManager;
+        public CartManager(ICartManager cartManager)
         {
-            this._cartRepo = cartRepo;
-        }
-        public IEnumerable<CartModel> GetCartContext()
-        {
-            return this._cartRepo.GetCartContext();
+            this.cartManager = cartManager;
         }
 
-        public async Task<int> AddCartModel(CartModel cartModel)
+        public Task<int> AddBookToCart(CartModel BookItem)
         {
-            return await this._cartRepo.AddCartModel(cartModel);
+            return this.cartManager.AddBookToCart(BookItem);
         }
 
-        public async Task<int> UpdateCartModel(CartModel newCartModel)
+        public CartModel Delete(int BookId)
         {
-            return await this._cartRepo.UpdateCartModel(newCartModel);
+            return this.cartManager.Delete(BookId);
         }
 
-        public Task<CartModel> DeleteCartModel(long cardId)
+        public IEnumerable<CartModel> GetAllBooksInCart()
         {
-            return this._cartRepo.DeleteCartModel(cardId);
+            return this.cartManager.GetAllBooksInCart();
         }
 
+        public Task<int> UpdateBookInCart(CartModel BookToUpdate, CartModel BookNewDetails)
+        {
+            return this.cartManager.UpdateBookInCart(BookToUpdate, BookNewDetails);
+        }
 
     }
 }
