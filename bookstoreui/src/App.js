@@ -4,13 +4,13 @@ import logo from './logo.svg';
 import {BrowserRouter as Router,Switch,Route} from 'react-router-dom';
 import Dashboard from './Component/dashboard'
 import './App.css';
-import OrderSummery from './Component/orderSummery'
+import OrderSummary from './Component/orderSummary'
 function App() {
   return (
     <Router>
       <Switch>
       <Route path='/dashboard' component={Dashboard}></Route>
-      <Route path='/orderSummery' component={OrderSummery}></Route>
+      <Route path='/orderSummary' component={OrderSummary}></Route>
       </Switch>
     </Router>
       )

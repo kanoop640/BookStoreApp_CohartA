@@ -4,7 +4,7 @@ import Header from './header'
 import dragon from '../assets/dragon.jpg'
 import Footer from './footer'
 import { getBook } from '../Service/service'
-import OrderSummery from'./orderSummery';
+import OrderSummery from'./orderSummary';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class Dashboard extends Component {
                 <Header />
                 <BookDashboard books={this.state.result}/>
                 <Footer />
-                <OrderSummery/>
+                
             </div>
         )
 
