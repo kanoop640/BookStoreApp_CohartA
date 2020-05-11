@@ -165,7 +165,7 @@ margin-right: 20px;
 }
 .CostomerDetails{
   width: 600px;
-  height: 70px;
+  height: 400px;
  margin-left:10%;
  border: 1px solid rgb(27, 26, 26);
  margin-top: 20px;
@@ -178,5 +178,39 @@ margin-right: 20px;
   margin-top: 20px;
 }
 .button{
-  margin-top: 60px;
+  margin-left:77%;
+  margin-top: 25%;  
+  color:white;
+  background-color: rgb(12, 52, 161);
+  height: 40px;
+  width: 130px;
+  border-radius: 10px;
+}
+.details{
+  margin-top: 10px;
+  margin-left: 40px;
+  display: flex;
+  left: 10px;
+}
+.Pincode{
+  margin-top: 10px;
+  margin-left: 40px;
+
+}
+.button1{
+  margin-left:460px;
+  margin-top: 10px;  
+  color:white;
+  background-color: rgb(12, 52, 161);
+  height: 40px;
+  width: 130px;
+  border-radius: 10px;
+}
+.Pin{
+  margin-top: 5px;
+  margin-left: 40px;
+  width: 440px;
+  height: 60px;
+  position: relative;
+  border: 1px solid rgb(27, 26, 26);
 }
