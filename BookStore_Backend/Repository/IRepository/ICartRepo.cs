@@ -37,6 +37,6 @@ namespace Repository.IRepository
         /// Declare Delete method.
         /// </summary>
         /// <param name="BookId">BookId.</param>
-        Task<IActionResult> DeleteCartModel(long BookId);
+        Task<CartModel> DeleteCartModel(long BookId);
     }
 }
