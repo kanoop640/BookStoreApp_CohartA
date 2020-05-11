@@ -44,10 +44,10 @@ namespace BookStoreWebAPI
                    sqlServerOptions => sqlServerOptions.MigrationsAssembly("Repository")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IBookManager, BookManager>();
             services.AddTransient<IBookRepo, BookRepoIMPL>();
-            services.AddTransient<IBookRepo, BookRepoIMPL>();
+            services.AddTransient<ICartManager, CartManager>();
             services.AddTransient<ICartRepo,CartRepoIMPL>();
-            services.AddTransient<IBookManager,BookManager>();
 
             ILoggerFactory loggerFactory = new LoggerFactory();
             loggerFactory.AddDebug();
@@ -69,7 +69,7 @@ namespace BookStoreWebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "myapi v1"); });
             }
-            else
+            else 
             {
                 app.UseHsts();
             }

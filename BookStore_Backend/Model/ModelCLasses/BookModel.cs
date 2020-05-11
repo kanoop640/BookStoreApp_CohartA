@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-
+﻿/// <summary>
+/// namespace for ModelClass
+/// </summary>
 namespace Model.ModelCLasses
 {
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    /// <summary>
+    /// Model Class for Book
+    /// </summary>
     public class BookModel
     {
         /// <summary>
@@ -13,7 +16,7 @@ namespace Model.ModelCLasses
         /// </summary>
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int BookId { get; set; }
+        public long BookId { get; set; }
 
         /// <summary>
         /// property for name title of the book
@@ -33,7 +36,7 @@ namespace Model.ModelCLasses
         /// <summary>
         /// property for the price of the book
         /// </summary>
-        public string Price { get; set; }
+        public int Price { get; set; }
 
         /// <summary>
         /// property for total number of available book

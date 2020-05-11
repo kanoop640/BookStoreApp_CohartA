@@ -1,5 +1,7 @@
 ﻿using Manager.IManager;
+using Microsoft.AspNetCore.Mvc;
 using Model.ModelCLasses;
+using Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,5 +36,6 @@ namespace Manager.ManagerIMPL
         {
             return this.cartManager.UpdateBookInCart(BookToUpdate, BookNewDetails);
         }
+
     }
 }

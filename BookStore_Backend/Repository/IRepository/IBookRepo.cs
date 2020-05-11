@@ -1,11 +1,15 @@
-﻿using Model.ModelCLasses;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+/// namespace Irepository
+/// </summary>
 namespace Repository.IRepository
 {
+    using Model.ModelCLasses;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// inteface IBookRepo
+    /// </summary>
     public interface IBookRepo
     {
         /// <summary>

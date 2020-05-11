@@ -1,59 +1,94 @@
-﻿using Model.ModelCLasses;
-using Repository.Context;
-using Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+/// namespace for RepositoryIMPL
+/// </summary>
 namespace Repository.RepositoryIMPL
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Model.ModelCLasses;
+    using Repository.Context;
+    using Repository.IRepository;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+   
+
+    /// <summary>
+    /// Implementation class for ICartRepo interface
+    /// </summary>
     public class CartRepoIMPL : ICartRepo
     {
+        /// <summary>
+        /// instance reference for UserDBContext
+        /// </summary>
         private readonly UserDBContext _context;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EmployeeRepository"/> class.
+        /// Initializes a new instance of the <see cref="CartRepository"/> class.
         /// </summary>
         /// <param name="context">context.</param>
         public CartRepoIMPL(UserDBContext context)
         {
             this._context = context;
         }
-        public Task<int> AddBookToCart(CartModel BookItem)
+
+        /// <summary>
+        /// Add cart item to CartContext
+        /// </summary>
+        /// <param name="CartItem"></param>
+        /// <returns>int</returns>
+        public Task<int> AddCartModel(CartModel cartModel)
         {
-            this._context.Cart.Add(BookItem);
-            var result = this._context.SaveChangesAsync();
+            this._context.CartContext.Add(cartModel);
+            var result =  this._context.SaveChangesAsync();
             return result;
         }
 
-        public CartModel Delete(int BookId)
+        /// <summary>
+        /// Get All Cart Item from CartContext
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<CartModel> GetCartContext()
         {
-            CartModel cartModel = this._context.Cart.Find(BookId);
+             return  this._context.CartContext.ToList();
+        }
+
+        /// <summary>
+        /// Update the number of books in cartItem
+        /// </summary>
+        /// <param name="OldBookDetails"></param>
+        /// <param name="NewBookDetails"></param>
+        /// <returns></returns>
+        public async Task<int> UpdateCartModel(CartModel newCartModel)
+        {
+            try
+            {
+                var oldCartModel = await _context.CartContext.FindAsync(newCartModel.CartId);
+                oldCartModel.Count = newCartModel.Count;
+                if (oldCartModel.Count <= 0)
+                    await DeleteCartModel(oldCartModel.BookId);
+                return await this._context.SaveChangesAsync();
+            }
+            catch(Exception)
+            {
+                return -1; 
+            }
+        }
+
+        /// <summary>
+        /// Delete Cart Model item in CartContext
+        /// </summary>
+        /// <param name="cartId"></param>
+        /// <returns></returns>
+        public async Task<CartModel> DeleteCartModel(long cartId)
+        {
+            CartModel cartModel = this._context.CartContext.Find(cartId);
             if (cartModel != null)
             {
-                this._context.Cart.Remove(cartModel);
-                this._context.SaveChanges();
+                this._context.CartContext.Remove(cartModel);
+                await this._context.SaveChangesAsync();
             }
             return cartModel;
-        }
-
-        public IEnumerable<CartModel> GetAllBooksInCart()
-        {
-            return this._context.Cart.ToList();
-        }
-
-        public Task<int> UpdateBookInCart(CartModel BookToUpdate, CartModel BookNewDetails)
-        {
-            BookToUpdate.Title = BookNewDetails.Title;
-            BookToUpdate.Authors  = BookNewDetails.Authors;
-            BookToUpdate.Count  = BookNewDetails.Count;
-            BookToUpdate.Price  = BookNewDetails.Price;
-            BookToUpdate.TotalPrice  = BookNewDetails.TotalPrice;
-            BookToUpdate.Image  = BookNewDetails.Image;
-            var result = this._context.SaveChangesAsync();
-            return result; 
         }
     }
 }
