@@ -16,6 +16,7 @@ namespace Manager.ManagerIMPL
         {
             this._cartRepo = cartRepo;
         }
+
         public IEnumerable<CartModel> GetCartContext()
         {
             return this._cartRepo.GetCartContext();
