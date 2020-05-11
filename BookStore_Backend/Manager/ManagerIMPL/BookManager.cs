@@ -1,4 +1,5 @@
 ﻿using Manager.IManager;
+using Microsoft.AspNetCore.Http;
 using Model.ModelCLasses;
 using Repository.IRepository;
 using System;
@@ -11,7 +12,7 @@ namespace Manager.ManagerIMPL
     public class BookManager : IBookManager
     {
         private readonly IBookRepo _bookRepository;
-        public BookManager( IBookRepo _bookRepository)
+        public BookManager(IBookRepo _bookRepository)
         {
             this._bookRepository = _bookRepository;
         }
@@ -23,6 +24,11 @@ namespace Manager.ManagerIMPL
         public IEnumerable<BookModel> GetAllBook()
         {
             return this._bookRepository.GetAllBook();
+        }
+
+        public string Image(IFormFile file, int id)
+        {
+            return this._bookRepository.Image(file,id);
         }
     }
 }

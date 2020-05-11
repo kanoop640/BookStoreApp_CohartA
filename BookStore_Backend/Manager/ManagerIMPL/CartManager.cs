@@ -1,5 +1,7 @@
 ﻿using Manager.IManager;
+using Microsoft.AspNetCore.Mvc;
 using Model.ModelCLasses;
+using Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,30 +11,33 @@ namespace Manager.ManagerIMPL
 {
    public class CartManager : ICartManager
     {
-        private readonly ICartManager cartManager;
-        public CartManager(ICartManager cartManager)
+        private readonly ICartRepo _cartRepo;
+        public CartManager(ICartRepo cartRepo)
         {
-            this.cartManager = cartManager;
+            this._cartRepo = cartRepo;
         }
 
-        public Task<int> AddBookToCart(CartModel BookItem)
+        public Task<int> AddCartModel(CartModel cartModel)
         {
-            return this.cartManager.AddBookToCart(BookItem);
+            return this._cartRepo.AddCartModel(cartModel);
         }
 
-        public CartModel Delete(int BookId)
+        public Task<CartModel> DeleteCartModel(long BookId)
         {
-            return this.cartManager.Delete(BookId);
+            var result = this._cartRepo.DeleteCartModel(BookId);
+            return result;
         }
 
-        public IEnumerable<CartModel> GetAllBooksInCart()
+        public IEnumerable<CartModel> GetCartContext()
         {
-            return this.cartManager.GetAllBooksInCart();
+            return this._cartRepo.GetCartContext();
         }
 
-        public Task<int> UpdateBookInCart(CartModel BookToUpdate, CartModel BookNewDetails)
+        public async Task<int> UpdateCartModel(CartModel newCartModel)
         {
-            return this.cartManager.UpdateBookInCart(BookToUpdate, BookNewDetails);
+            return await this._cartRepo.UpdateCartModel(newCartModel);
         }
+
+       
     }
 }

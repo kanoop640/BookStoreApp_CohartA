@@ -1,11 +1,16 @@
-﻿using Model.ModelCLasses;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+/// namespace Irepository
+/// </summary>
 namespace Repository.IRepository
 {
+    using Microsoft.AspNetCore.Http;
+    using Model.ModelCLasses;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+
+    /// <summary>
+    /// inteface IBookRepo
+    /// </summary>
     public interface IBookRepo
     {
         /// <summary>
@@ -20,5 +25,7 @@ namespace Repository.IRepository
         /// <param name="BookItem">BookItem.</param>
         /// <returns>Task.</returns>
         Task<int> AddBook(BookModel BookItem);
+
+        string Image(IFormFile file, int id);
     }
 }

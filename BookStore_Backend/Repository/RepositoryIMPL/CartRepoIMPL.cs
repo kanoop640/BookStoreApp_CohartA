@@ -1,16 +1,26 @@
-﻿using Model.ModelCLasses;
-using Repository.Context;
-using Repository.IRepository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/// <summary>
+/// namespace for RepositoryIMPL
+/// </summary>
 namespace Repository.RepositoryIMPL
 {
+    using Microsoft.AspNetCore.Mvc;
+    using Model.ModelCLasses;
+    using Repository.Context;
+    using Repository.IRepository;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+   
+
+    /// <summary>
+    /// Implementation class for ICartRepo interface
+    /// </summary>
     public class CartRepoIMPL : ICartRepo
     {
+        /// <summary>
+        /// instance reference for UserDBContext
+        /// </summary>
         private readonly UserDBContext _context;
 
         /// <summary>
@@ -21,39 +31,65 @@ namespace Repository.RepositoryIMPL
         {
             this._context = context;
         }
-        public Task<int> AddBookToCart(CartModel BookItem)
+
+        /// <summary>
+        /// Add cart item to CartContext
+        /// </summary>
+        /// <param name="CartItem"></param>
+        /// <returns>int</returns>
+        public Task<int> AddCartModel(CartModel cartModel)
         {
-            this._context.Cart.Add(BookItem);
+            this._context.CartContext.Add(cartModel);
             var result = this._context.SaveChangesAsync();
             return result;
         }
-
-        public CartModel Delete(int BookId)
+        /// <summary>
+        /// DeleteCartMethod
+        /// </summary>
+        /// <param name="cartId"></param>
+        /// <returns></returns>
+        public async Task<CartModel> DeleteCartModel(long cartId)
         {
-            CartModel cartModel = this._context.Cart.Find(BookId);
+            CartModel cartModel = this._context.CartContext.Find(cartId);
             if (cartModel != null)
             {
-                this._context.Cart.Remove(cartModel);
-                this._context.SaveChanges();
+                this._context.CartContext.Remove(cartModel);
+                await this._context.SaveChangesAsync();
             }
             return cartModel;
         }
 
-        public IEnumerable<CartModel> GetAllBooksInCart()
+        /// <summary>
+        /// Get All Cart Item from CartContext
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<CartModel> GetCartContext()
         {
-            return this._context.Cart.ToList();
+            return this._context.CartContext.ToList();
         }
 
-        public Task<int> UpdateBookInCart(CartModel BookToUpdate, CartModel BookNewDetails)
+        /// <summary>
+        /// Update the number of books in cartItem
+        /// </summary>
+        /// <param name="OldBookDetails"></param>
+        /// <param name="NewBookDetails"></param>
+        /// <returns></returns>
+        public async Task<int> UpdateCartModel(CartModel newCartModel)
         {
-            BookToUpdate.Title = BookNewDetails.Title;
-            BookToUpdate.Authors  = BookNewDetails.Authors;
-            BookToUpdate.Count  = BookNewDetails.Count;
-            BookToUpdate.Price  = BookNewDetails.Price;
-            BookToUpdate.TotalPrice  = BookNewDetails.TotalPrice;
-            BookToUpdate.Image  = BookNewDetails.Image;
-            var result = this._context.SaveChangesAsync();
-            return result; 
+            try
+            {
+                var oldCartModel = await _context.CartContext.FindAsync(newCartModel.CartId);
+                oldCartModel.Count = newCartModel.Count;
+                /*   if (OldBookDetails.Count <= 0)
+                       DeleteCartModel(OldBookDetails.BookId);*/
+                return await this._context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                return await Task.FromResult(0);
+            }
         }
+
+       
     }
 }

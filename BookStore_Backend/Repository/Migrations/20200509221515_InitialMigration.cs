@@ -3,20 +3,20 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Repository.Migrations
 {
-    public partial class intialmigration : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Book",
+                name: "BookContext",
                 columns: table => new
                 {
-                    BookId = table.Column<int>(nullable: false)
+                    BookId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
                     Author = table.Column<string>(nullable: true),
                     Image = table.Column<string>(nullable: true),
-                    Price = table.Column<string>(nullable: true),
+                    Price = table.Column<int>(nullable: false),
                     AvailableBooks = table.Column<int>(nullable: false),
                     Description = table.Column<string>(nullable: true),
                     Ratings = table.Column<string>(nullable: true),
@@ -24,35 +24,31 @@ namespace Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Book", x => x.BookId);
+                    table.PrimaryKey("PK_BookContext", x => x.BookId);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Cart",
+                name: "CartContext",
                 columns: table => new
                 {
-                    CartId = table.Column<int>(nullable: false)
+                    CartId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Title = table.Column<string>(nullable: true),
-                    Authors = table.Column<string>(nullable: true),
-                    Image = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(nullable: false),
-                    TotalPrice = table.Column<double>(nullable: false),
+                    BookId = table.Column<long>(nullable: false),
                     Count = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cart", x => x.CartId);
+                    table.PrimaryKey("PK_CartContext", x => x.CartId);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Book");
+                name: "BookContext");
 
             migrationBuilder.DropTable(
-                name: "Cart");
+                name: "CartContext");
         }
     }
 }

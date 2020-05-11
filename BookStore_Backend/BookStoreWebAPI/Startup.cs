@@ -45,9 +45,11 @@ namespace BookStoreWebAPI
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<IBookRepo, BookRepoIMPL>();
-            services.AddTransient<IBookRepo, BookRepoIMPL>();
+            services.AddTransient<IBookManager, BookManager>();
+           
             services.AddTransient<ICartRepo,CartRepoIMPL>();
-            services.AddTransient<IBookManager,BookManager>();
+            services.AddTransient<ICartManager, CartManager>();
+
 
             ILoggerFactory loggerFactory = new LoggerFactory();
             loggerFactory.AddDebug();
@@ -75,7 +77,23 @@ namespace BookStoreWebAPI
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
+            // app.UseMvc();
+
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=CartController}/{action=addcartmodel}/{id?}"
+                    );
+            });
         }
     }
 }

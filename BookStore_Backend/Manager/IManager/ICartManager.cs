@@ -1,4 +1,5 @@
-﻿using Model.ModelCLasses;
+﻿using Microsoft.AspNetCore.Mvc;
+using Model.ModelCLasses;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,26 +13,26 @@ namespace Manager.IManager
         /// Declare GetAll Methods.
         /// </summary>
         /// <returns>AllEmployee.</returns>
-        IEnumerable<CartModel> GetAllBooksInCart();
+        IEnumerable<CartModel> GetCartContext();
 
         /// <summary>
         /// Declare Add Method.
         /// </summary>
         /// <param name="entity">entity.</param>
         /// <returns>Task.</returns>
-        Task<int> AddBookToCart(CartModel BookItem);
+        Task<int> AddCartModel(CartModel BookItem);
 
         /// <summary>
         /// Declare Update method.
         /// </summary>
         /// <param name="dbEntity">dbEntity.</param>
         /// <param name="entity">entity.</param>
-        Task<int> UpdateBookInCart(CartModel BookToUpdate, CartModel BookNewDetails);
+        Task<int> UpdateCartModel(CartModel newCartModel);
 
         /// <summary>
         /// Declare Delete method.
         /// </summary>
         /// <param name="entity">entity.</param>
-        CartModel Delete(int BookId);
+        Task<CartModel> DeleteCartModel(long BookId);
     }
 }
