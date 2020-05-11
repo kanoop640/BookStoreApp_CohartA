@@ -43,11 +43,7 @@ namespace Repository.RepositoryIMPL
             var result = this._context.SaveChangesAsync();
             return result;
         }
-        /// <summary>
-        /// DeleteCartMethod
-        /// </summary>
-        /// <param name="cartId"></param>
-        /// <returns></returns>
+
         public async Task<CartModel> DeleteCartModel(long cartId)
         {
             CartModel cartModel = this._context.CartContext.Find(cartId);
@@ -58,6 +54,31 @@ namespace Repository.RepositoryIMPL
             }
             return cartModel;
         }
+
+        /*/// <summary>
+        /// Delete Cart item from CartContext
+        /// </summary>
+        /// <param name="BookId"></param>
+        /// <returns></returns>
+        public async Task<int> DeleteCartModel(long BookId)
+        {
+            int result=0;
+            var cartModel = await _context.CartContext.FindAsync(BookId);
+            if (cartModel != null)
+            {
+                _context.CartContext.Remove(cartModel);
+                result = await _context.SaveChangesAsync();
+            }
+            return await Task.FromResult(result);
+
+            *//*CartModel cartModel = await this._context.CartContext.FindAsync(BookId);
+            if (cartModel != null)
+            {
+                this._context.CartContext.Remove(cartModel);
+                await this._context.SaveChangesAsync();
+            }
+            return *//*
+        }*/
 
         /// <summary>
         /// Get All Cart Item from CartContext

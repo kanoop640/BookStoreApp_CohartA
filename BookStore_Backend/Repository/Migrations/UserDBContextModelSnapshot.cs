@@ -59,6 +59,32 @@ namespace Repository.Migrations
 
                     b.ToTable("CartContext");
                 });
+
+            modelBuilder.Entity("Model.ModelCLasses.CustomerDetails", b =>
+                {
+                    b.Property<string>("email")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("address");
+
+                    b.Property<string>("city");
+
+                    b.Property<string>("landMark");
+
+                    b.Property<string>("locality");
+
+                    b.Property<string>("name");
+
+                    b.Property<string>("password");
+
+                    b.Property<int>("phoneNumber");
+
+                    b.Property<int>("pinCode");
+
+                    b.HasKey("email");
+
+                    b.ToTable("AddressContext");
+                });
 #pragma warning restore 612, 618
         }
     }

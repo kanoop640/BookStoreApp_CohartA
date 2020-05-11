@@ -20,5 +20,10 @@ namespace Repository.Context
         {
             get; set;
         }
+
+        public DbSet<CustomerDetails> AddressContext
+        {
+            get; set;
+        }
     }
 }
