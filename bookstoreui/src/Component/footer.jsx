@@ -7,7 +7,7 @@ export class Footer extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="footer">
                 <div className="foot">
                     <p>Copyright &copy; 2020. BookStore Pvt. Ltd.</p>
                 </div>
