@@ -31,12 +31,12 @@ namespace BookStoreWebAPI.Controllers
 
         [Route("addcartmodel")]
         [HttpPost]
-        public async Task<IActionResult> AddBook(CartModel bookModel)
+        public async Task<IActionResult> AddCartModel(CartModel cartModel)
         {
-            var result = await this._cartManager.AddCartModel(bookModel);
+            var result = await this._cartManager.AddCartModel(cartModel);
             if (result == 1)
             {
-                return this.Ok(bookModel);
+                return this.Ok(cartModel);
             }
             return BadRequest();
         }
