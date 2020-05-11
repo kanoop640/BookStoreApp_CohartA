@@ -3,6 +3,7 @@
 /// </summary>
 namespace Model.ModelCLasses
 {
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
@@ -26,6 +27,7 @@ namespace Model.ModelCLasses
         /// <summary>
         /// property for count i.e number of books selected.
         /// </summary>
-        public int Count { get; set; } 
+        public int Count { get; set; }
+        
     }
 }
