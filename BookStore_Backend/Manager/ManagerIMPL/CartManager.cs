@@ -26,5 +26,15 @@ namespace Manager.ManagerIMPL
             return await this._cartRepo.AddCartModel(cartModel);
         }
 
+        /// <summary>
+        /// method to update Cart Model
+        /// </summary>
+        /// <param name="newCartModel"></param>
+        /// <returns></returns>
+        public async Task<int> UpdateCartModel(CartModel newCartModel)
+        {
+            return await this._cartRepo.UpdateCartModel(newCartModel);
+        }
+
     }
 }
