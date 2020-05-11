@@ -12,7 +12,7 @@ class Header extends Component {
     render() {
         return (
           <div>
-            <AppBar position="static" className="AppBar">
+            <AppBar position="static" className="MuiAppBar-colorPrimary">
               <Toolbar variant="dense" className="toolbar">
               <div className="temp" style={styles.bookIcon}>
                                 <MenuBookIcon fontSize='medium' />
@@ -47,8 +47,8 @@ class Header extends Component {
     }
     const styles = {
         bookIcon:{
-            width:300,
-            marginLeft:100,
+            width:150,
+            marginLeft:80,
             display:"flex"
         },
         cartIcon:{
