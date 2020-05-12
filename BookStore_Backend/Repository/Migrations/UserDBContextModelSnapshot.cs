@@ -59,6 +59,18 @@ namespace Repository.Migrations
 
                     b.ToTable("CartContext");
                 });
+
+            modelBuilder.Entity("Model.ModelCLasses.LoginModel", b =>
+                {
+                    b.Property<string>("Email")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Password");
+
+                    b.HasKey("Email");
+
+                    b.ToTable("LoginContext");
+                });
 #pragma warning restore 612, 618
         }
     }
