@@ -20,5 +20,9 @@ namespace Repository.Context
         {
             get; set;
         }
+        public DbSet<LogInModel> LoginContext
+        {
+            get;set;
+        }
     }
 }
