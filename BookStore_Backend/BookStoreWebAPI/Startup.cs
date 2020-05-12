@@ -48,6 +48,8 @@ namespace BookStoreWebAPI
             services.AddTransient<IBookRepo, BookRepoIMPL>();
             services.AddTransient<ICartManager, CartManager>();
             services.AddTransient<ICartRepo,CartRepoIMPL>();
+            services.AddTransient<ILoginManager,LoginManager>();
+            services.AddTransient<ILoginRepo,LoginRepoIMPL>();
 
             ILoggerFactory loggerFactory = new LoggerFactory();
             loggerFactory.AddDebug();
