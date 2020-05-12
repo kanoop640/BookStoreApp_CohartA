@@ -11,11 +11,6 @@ namespace Repository.RepositoryIMPL
     using Repository.Context;
     using Repository.IRepository;
     using System;
-
-    using Model.ModelCLasses;
-    using Repository.Context;
-    using Repository.IRepository;
-
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;

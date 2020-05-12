@@ -9,13 +9,9 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(UserDBContext))]
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.Designer.cs
-    [Migration("20200511133415_BookStore")]
-    partial class BookStore
-=======
+   
     [Migration("20200511191730_InitialMigration")]
     partial class InitialMigration
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,7 +63,6 @@ namespace Repository.Migrations
                     b.ToTable("CartContext");
                 });
 
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.Designer.cs
             modelBuilder.Entity("Model.ModelCLasses.CustomerDetails", b =>
                 {
                     b.Property<string>("email")
@@ -92,7 +87,7 @@ namespace Repository.Migrations
                     b.HasKey("email");
 
                     b.ToTable("AddressContext");
-=======
+                });
             modelBuilder.Entity("Model.ModelCLasses.LoginModel", b =>
                 {
                     b.Property<string>("Email")
@@ -103,7 +98,6 @@ namespace Repository.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("LoginContext");
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.Designer.cs
                 });
 #pragma warning restore 612, 618
         }
