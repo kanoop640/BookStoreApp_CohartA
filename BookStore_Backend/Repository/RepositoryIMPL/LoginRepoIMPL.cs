@@ -32,13 +32,9 @@ namespace Repository.RepositoryIMPL
         public bool LogIn(LogInModel loginModel)
         {
             LogInModel _loginModel = this._context.LoginContext.Find(loginModel.Email);
-            if(_loginModel.Email == loginModel.Email)
-            {
-                if(_loginModel.Password==loginModel.Password)
-                {
+            if(_loginModel != null)
+                if (_loginModel.Email == loginModel.Email && _loginModel.Password==loginModel.Password)
                     return true ;
-                }
-            }
             return false;
         }
 
@@ -49,7 +45,7 @@ namespace Repository.RepositoryIMPL
         /// <returns></returns>
         public bool SignUp(LogInModel loginModel)
         {
-              this._context.LoginContext.Add(loginModel);
+            this._context.LoginContext.Add(loginModel);
             var result = this._context.SaveChanges();
             if(result != 0)
                 return true;
