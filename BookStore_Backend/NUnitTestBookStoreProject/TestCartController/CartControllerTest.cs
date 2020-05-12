@@ -30,18 +30,31 @@ namespace NUnitBookStoreTestProject.TestCartController
             var cardRepoMock = new Mock<ICartRepo>();
             var cartMangerMock = new CartManager(cardRepoMock.Object);
             var cartControllerMock = new CartController(cartMangerMock);
-
             CartModel cartModel = new CartModel()
             {
                 CartId = 6,
                 BookId = 6,
                 Count = 6
             };
-
             var result = cartControllerMock.AddCartModel(cartModel);
-            /* var a = result as ObjectResult;
-             Assert.AreEqual(cartModel, a.Value);*/
             Assert.NotNull(result);
         }
+
+        [TestCase]
+        public void UpdateCartModelTest()
+        {
+            var cardRepoMock = new Mock<ICartRepo>();
+            var cartMangerMock = new CartManager(cardRepoMock.Object);
+            var cartControllerMock = new CartController(cartMangerMock);
+            CartModel cartModel = new CartModel()
+            {
+                CartId = 6,
+                BookId = 7,
+                Count = 7
+            };
+            var result = cartControllerMock.UpdateCartModel(cartModel);
+            Assert.NotNull(result);
+        }
+
     }
 }
