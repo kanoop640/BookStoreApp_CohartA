@@ -3,16 +3,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Repository.Migrations
 {
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.cs
-    public partial class BookStore : Migration
-=======
     public partial class InitialMigration : Migration
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.cs
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.cs
                 name: "AddressContext",
                 columns: table => new
                 {
@@ -35,11 +30,6 @@ namespace Repository.Migrations
                 name: "BookContext",
                 columns: table => new
                 {
-=======
-                name: "BookContext",
-                columns: table => new
-                {
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.cs
                     BookId = table.Column<long>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Title = table.Column<string>(nullable: true),
@@ -68,8 +58,6 @@ namespace Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CartContext", x => x.CartId);
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.cs
-=======
                 });
 
             migrationBuilder.CreateTable(
@@ -82,14 +70,12 @@ namespace Repository.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LoginContext", x => x.Email);
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.cs
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.cs
                 name: "AddressContext");
 
             migrationBuilder.DropTable(
@@ -97,15 +83,10 @@ namespace Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "CartContext");
-=======
-                name: "BookContext");
-
-            migrationBuilder.DropTable(
-                name: "CartContext");
 
             migrationBuilder.DropTable(
                 name: "LoginContext");
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.cs
         }
+
     }
 }

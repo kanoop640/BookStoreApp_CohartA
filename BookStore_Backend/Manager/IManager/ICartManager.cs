@@ -29,13 +29,10 @@ namespace Manager.IManager
         /// <param name="entity">entity.</param>
         Task<int> UpdateCartModel(CartModel newCartModel);
 
-<<<<<<< HEAD
         /// <summary>
         /// Declare Delete method.
         /// </summary>
         /// <param name="entity">entity.</param>
         Task<CartModel> DeleteCartModel(long BookId);
-=======
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92
     }
 }

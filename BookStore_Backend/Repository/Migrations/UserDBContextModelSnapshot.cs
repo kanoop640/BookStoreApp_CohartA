@@ -60,7 +60,6 @@ namespace Repository.Migrations
                     b.ToTable("CartContext");
                 });
 
-<<<<<<< HEAD
             modelBuilder.Entity("Model.ModelCLasses.CustomerDetails", b =>
                 {
                     b.Property<string>("email")
@@ -85,7 +84,7 @@ namespace Repository.Migrations
                     b.HasKey("email");
 
                     b.ToTable("AddressContext");
-=======
+                    });
             modelBuilder.Entity("Model.ModelCLasses.LoginModel", b =>
                 {
                     b.Property<string>("Email")
@@ -96,9 +95,11 @@ namespace Repository.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("LoginContext");
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92
                 });
+                    
+           
 #pragma warning restore 612, 618
+                
         }
     }
 }

@@ -17,14 +17,11 @@ namespace Repository.Context
             get; set;
         }
         public DbSet<CartModel> CartContext
-<<<<<<< HEAD
         {
             get; set;
         }
 
         public DbSet<CustomerDetails> AddressContext
-=======
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92
         {
             get; set;
         }

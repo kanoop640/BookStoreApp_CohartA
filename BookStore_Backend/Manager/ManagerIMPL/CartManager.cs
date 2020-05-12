@@ -17,7 +17,6 @@ namespace Manager.ManagerIMPL
             this._cartRepo = cartRepo;
         }
 
-<<<<<<< HEAD
         public Task<int> AddCartModel(CartModel cartModel)
         {
             return this._cartRepo.AddCartModel(cartModel);
@@ -38,29 +37,5 @@ namespace Manager.ManagerIMPL
         {
             return await this._cartRepo.UpdateCartModel(newCartModel);
         }
-
-       
-=======
-        public IEnumerable<CartModel> GetCartContext()
-        {
-            return this._cartRepo.GetCartContext();
-        }
-
-        public async Task<int> AddCartModel(CartModel cartModel)
-        {
-            return await this._cartRepo.AddCartModel(cartModel);
-        }
-
-        /// <summary>
-        /// method to update Cart Model
-        /// </summary>
-        /// <param name="newCartModel"></param>
-        /// <returns></returns>
-        public async Task<int> UpdateCartModel(CartModel newCartModel)
-        {
-            return await this._cartRepo.UpdateCartModel(newCartModel);
-        }
-
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92
     }
 }
