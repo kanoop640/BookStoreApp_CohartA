@@ -30,7 +30,11 @@ namespace BookStoreWebAPI.Controllers
             {
                 return this.Ok(bookModel);
             }
+<<<<<<< HEAD
             return BadRequest();
+=======
+                return BadRequest();
+>>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92
         }
 
         [Route("getallbook")]

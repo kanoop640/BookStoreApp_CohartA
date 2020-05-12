@@ -3,7 +3,10 @@
 /// </summary>
 namespace Repository.IRepository
 {
+<<<<<<< HEAD
     using Microsoft.AspNetCore.Http;
+=======
+>>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92
     using Model.ModelCLasses;
     using System.Collections.Generic;
     using System.Threading.Tasks;
