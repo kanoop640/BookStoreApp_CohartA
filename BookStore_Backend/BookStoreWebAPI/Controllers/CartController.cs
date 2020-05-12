@@ -46,7 +46,6 @@ namespace BookStoreWebAPI.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateCartModel(CartModel cartModelnew)
         {
-
             int result = await this._cartManager.UpdateCartModel(cartModelnew);
             if (result == 0)
                 return BadRequest(ModelState);
