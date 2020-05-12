@@ -12,7 +12,7 @@ class Header extends Component {
     render() {
         return (
           <div>
-            <AppBar position="static" className="MuiAppBar-colorPrimary">
+            <AppBar position="static" className="MuiAppBar-colorPrimary" style={styles.headerColor}>
               <Toolbar variant="dense" className="toolbar">
               <div className="temp" style={styles.bookIcon}>
                                 <MenuBookIcon fontSize='medium' />
@@ -58,6 +58,9 @@ class Header extends Component {
             width:100,
             display:"flex",
             justifyContent: "space-around"
+        },
+        headerColor:{
+          backgroundColor:'Brown',
         }
       }
 export default Header
