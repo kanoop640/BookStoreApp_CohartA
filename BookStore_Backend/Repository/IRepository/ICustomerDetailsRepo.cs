@@ -10,6 +10,6 @@ namespace Repository.IRepository
     {
 
         Task<int> AddCustomerAddress(CustomerDetails address);
-      //  CustomerDetails GetCustomerAddress(int bookId);
+        CustomerDetails GetCustomerAddress(CustomerDetails customerDetails);
     }
 }

@@ -55,7 +55,7 @@ namespace BookStoreWebAPI.Controllers
 
         [Route("addcartmodel")]
         [HttpPost]
-        public async Task<IActionResult> AddBook(CartModel bookModel)
+        public async Task<IActionResult> AddCartModel(CartModel bookModel)
         {
             var result = await this._cartManager.AddCartModel(bookModel);
             if (result == 1)

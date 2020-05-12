@@ -11,19 +11,18 @@ namespace Repository.Migrations
                 name: "AddressContext",
                 columns: table => new
                 {
-                    email = table.Column<string>(nullable: false),
-                    password = table.Column<string>(nullable: true),
-                    name = table.Column<string>(nullable: true),
-                    phoneNumber = table.Column<int>(nullable: false),
-                    pinCode = table.Column<int>(nullable: false),
-                    locality = table.Column<string>(nullable: true),
-                    address = table.Column<string>(nullable: true),
-                    city = table.Column<string>(nullable: true),
-                    landMark = table.Column<string>(nullable: true)
+                    Email = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<int>(nullable: false),
+                    PinCode = table.Column<int>(nullable: false),
+                    Locality = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    City = table.Column<string>(nullable: true),
+                    LandMark = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AddressContext", x => x.email);
+                    table.PrimaryKey("PK_AddressContext", x => x.Email);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,6 +86,5 @@ namespace Repository.Migrations
             migrationBuilder.DropTable(
                 name: "LoginContext");
         }
-
     }
 }

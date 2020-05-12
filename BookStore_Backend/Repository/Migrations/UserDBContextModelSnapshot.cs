@@ -62,30 +62,29 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Model.ModelCLasses.CustomerDetails", b =>
                 {
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("address");
+                    b.Property<string>("Address");
 
-                    b.Property<string>("city");
+                    b.Property<string>("City");
 
-                    b.Property<string>("landMark");
+                    b.Property<string>("LandMark");
 
-                    b.Property<string>("locality");
+                    b.Property<string>("Locality");
 
-                    b.Property<string>("name");
+                    b.Property<string>("Name");
 
-                    b.Property<string>("password");
+                    b.Property<int>("PhoneNumber");
 
-                    b.Property<int>("phoneNumber");
+                    b.Property<int>("PinCode");
 
-                    b.Property<int>("pinCode");
-
-                    b.HasKey("email");
+                    b.HasKey("Email");
 
                     b.ToTable("AddressContext");
-                    });
-            modelBuilder.Entity("Model.ModelCLasses.LoginModel", b =>
+                });
+
+            modelBuilder.Entity("Model.ModelCLasses.LogInModel", b =>
                 {
                     b.Property<string>("Email")
                         .ValueGeneratedOnAdd();
@@ -96,10 +95,7 @@ namespace Repository.Migrations
 
                     b.ToTable("LoginContext");
                 });
-                    
-           
 #pragma warning restore 612, 618
-                
         }
     }
 }

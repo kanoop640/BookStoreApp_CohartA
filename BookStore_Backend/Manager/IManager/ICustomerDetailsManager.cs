@@ -9,5 +9,6 @@ namespace Manager.IManager
     public interface ICustomerDetailsManager
     {
         Task<int> AddCustomerAddress(CustomerDetails address);
+        CustomerDetails GetCustomerAddress(CustomerDetails customerDetails);
     }
 }
