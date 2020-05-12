@@ -20,5 +20,10 @@ namespace Manager.ManagerIMPL
         {
             return this.customerDetailsRepo.AddCustomerAddress(address);
         }
+
+        public CustomerDetails GetCustomerAddress(CustomerDetails customerDetails)
+        {
+            return this.customerDetailsRepo.GetCustomerAddress(customerDetails);
+        }
     }
 }

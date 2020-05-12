@@ -9,13 +9,8 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(UserDBContext))]
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.Designer.cs
-    [Migration("20200511133415_BookStore")]
-    partial class BookStore
-=======
-    [Migration("20200511191730_InitialMigration")]
+    [Migration("20200512093518_InitialMigration")]
     partial class InitialMigration
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.Designer.cs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -67,33 +62,31 @@ namespace Repository.Migrations
                     b.ToTable("CartContext");
                 });
 
-<<<<<<< HEAD:BookStore_Backend/Repository/Migrations/20200511133415_BookStore.Designer.cs
             modelBuilder.Entity("Model.ModelCLasses.CustomerDetails", b =>
                 {
-                    b.Property<string>("email")
+                    b.Property<string>("Email")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("address");
+                    b.Property<string>("Address");
 
-                    b.Property<string>("city");
+                    b.Property<string>("City");
 
-                    b.Property<string>("landMark");
+                    b.Property<string>("LandMark");
 
-                    b.Property<string>("locality");
+                    b.Property<string>("Locality");
 
-                    b.Property<string>("name");
+                    b.Property<string>("Name");
 
-                    b.Property<string>("password");
+                    b.Property<int>("PhoneNumber");
 
-                    b.Property<int>("phoneNumber");
+                    b.Property<int>("PinCode");
 
-                    b.Property<int>("pinCode");
-
-                    b.HasKey("email");
+                    b.HasKey("Email");
 
                     b.ToTable("AddressContext");
-=======
-            modelBuilder.Entity("Model.ModelCLasses.LoginModel", b =>
+                });
+
+            modelBuilder.Entity("Model.ModelCLasses.LogInModel", b =>
                 {
                     b.Property<string>("Email")
                         .ValueGeneratedOnAdd();
@@ -103,7 +96,6 @@ namespace Repository.Migrations
                     b.HasKey("Email");
 
                     b.ToTable("LoginContext");
->>>>>>> 0b8bc40c4ddd07ad60dbaa7a1caa12b1c8043f92:BookStore_Backend/Repository/Migrations/20200511191730_InitialMigration.Designer.cs
                 });
 #pragma warning restore 612, 618
         }

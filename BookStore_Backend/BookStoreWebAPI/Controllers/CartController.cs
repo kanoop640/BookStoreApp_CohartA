@@ -5,9 +5,6 @@ using System.Threading.Tasks;
 using Manager.IManager;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Manager.IManager;
 using Model.ModelCLasses;
 
 namespace BookStoreWebAPI.Controllers
@@ -58,7 +55,7 @@ namespace BookStoreWebAPI.Controllers
 
         [Route("addcartmodel")]
         [HttpPost]
-        public async Task<IActionResult> AddBook(CartModel bookModel)
+        public async Task<IActionResult> AddCartModel(CartModel bookModel)
         {
             var result = await this._cartManager.AddCartModel(bookModel);
             if (result == 1)

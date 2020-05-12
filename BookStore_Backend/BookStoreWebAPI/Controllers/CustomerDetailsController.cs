@@ -22,10 +22,22 @@ namespace BookStoreWebAPI.Controllers
 
         [Route("address")]
         [HttpPost]
-        public async Task<IActionResult> AddBook(CustomerDetails customerDetails)
+        public async Task<IActionResult> AddCustomerAddress(CustomerDetails customerDetails)
         {
             var result = await this.customerDetailsManager.AddCustomerAddress(customerDetails);
             if (result == 1)
+            {
+                return this.Ok(customerDetails);
+            }
+            return BadRequest();
+        }
+
+        [Route("addressbyemail")]
+        [HttpPost]
+        public IActionResult GetCustomerAddress(CustomerDetails customerDetails)
+        {
+            var result =  this.customerDetailsManager.GetCustomerAddress(customerDetails);
+            if (result != null)
             {
                 return this.Ok(customerDetails);
             }

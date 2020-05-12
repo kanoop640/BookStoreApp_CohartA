@@ -11,6 +11,7 @@ namespace Repository.RepositoryIMPL
     public class CustomerDetailsRepoIMPL:ICustomerDetailsRepo
     {
         private readonly UserDBContext _context;
+       
         public CustomerDetailsRepoIMPL(UserDBContext context)
         {
             this._context = context;
@@ -20,6 +21,11 @@ namespace Repository.RepositoryIMPL
             _context.AddressContext.Add(address);
             var result = _context.SaveChangesAsync();
             return result;
+        }
+
+        public CustomerDetails GetCustomerAddress(CustomerDetails customerDetails)
+        {
+            return this._context.AddressContext.Find(customerDetails.Email);
         }
     }
 }
