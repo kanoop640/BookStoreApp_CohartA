@@ -9,11 +9,53 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 class BookDashboard extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         console.log(props.books)
+        this.state = {
+            showClick: false,
+        }
     }
-    
+    handleChangeButton = async () => {
+        const doesShowClick = this.state.showClick
+        await this.setState({
+            showClick: !doesShowClick
+        })
+        console.log(this.state.books);
+    }
+
+    displayButton(id) {
+        if (this.props.cart.includes(id)) {
+
+            return (
+                <CardActions className="">
+                    <button className="add-to-cart">Added to cart</button>
+                </CardActions>
+            )
+        }
+        else {
+
+            return (
+
+                <CardActions className="">
+                    <Button className="MuiButton-outlined"
+                        style={styles.cartAdd}
+                        onClick={() => this.props.AddToCart(id)}
+                        variant='outlined'
+                        color='default'
+                    > Add to cart</Button>
+
+                    <Button
+                        className="MuiButton-outlined"
+                        style={styles.cartWish}
+                        // style={{display:this.props.showClick?'none':'block'}}
+                        variant='outlined'
+                        color='default'
+                    > Wishlist</Button>
+                </CardActions>
+            );
+        }
+    }
 
     render() {
         return (
@@ -49,25 +91,16 @@ class BookDashboard extends Component {
                                         <Typography variant="h10">
                                             {data.author}
                                         </Typography>
-                                        <Typography  varient="h10">
-                                            {data.price}
+                                        <Typography varient="h10">
+                                            Rs.{data.price}
                                         </Typography>
                                     </CardContent>
-                                    <CardActions className="">
-                                        <Button className="MuiButton-outlined"
-                                        style={styles.cart}
-                                            variant='outlined'
-                                            color='default'
-                                            onClick={()=>this.handleAddButton}
-                                        > Add to cart</Button>
 
-                                        <Button
-                                        className="MuiButton-outlined"
-                                        style={styles.cart}
-                                            variant='outlined'
-                                            color='default'
-                                        > Wishlist</Button>
-                                    </CardActions>
+
+                                    {
+                                        this.displayButton(data.bookId)
+
+                                    }
                                 </Card>
                             );
                         })
@@ -75,7 +108,7 @@ class BookDashboard extends Component {
 
                 </div>
                 <div className='pagination-div'>
-                    <Pagination count={10} color="primary" className="page"/>
+                    <Pagination count={10} color="primary" className="page" />
                 </div>
             </div>
         )
@@ -92,15 +125,22 @@ const styles = {
         heigth: 50,
         wigth: 50,
     },
-    cart:{
-    borderWidth:1,
-    paddingLeft:3,
-    paddingRight:4,
+    cartAdd: {
+        borderWidth: 1,
+        paddingLeft: 3,
+        paddingRight: 4,
+        borderColor: 'Blue'
     },
-    cardDetails:{
-    height: 45,
-    paddingTop: 4,
-    paddingLeft: 10,
+    cartWish: {
+        borderWidth: 1,
+        paddingLeft: 3,
+        paddingRight: 4,
+        borderColor: 'green'
+    },
+    cardDetails: {
+        height: 45,
+        paddingTop: 4,
+        paddingLeft: 10,
     }
 }
 export default BookDashboard;
