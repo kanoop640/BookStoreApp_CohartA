@@ -12,18 +12,10 @@ class BookDashboard extends Component {
     constructor(props) {
         super(props)
         console.log(props.books)
-        this.state = {
-            showClick: false,
+        this.state={
+            count:0,
         }
     }
-    handleChangeButton = async () => {
-        const doesShowClick = this.state.showClick
-        await this.setState({
-            showClick: !doesShowClick
-        })
-        console.log(this.state.books);
-    }
-
     displayButton(id) {
         if (this.props.cart.includes(id)) {
 
@@ -48,7 +40,6 @@ class BookDashboard extends Component {
                     <Button
                         className="MuiButton-outlined"
                         style={styles.cartWish}
-                        // style={{display:this.props.showClick?'none':'block'}}
                         variant='outlined'
                         color='default'
                     > Wishlist</Button>
@@ -95,11 +86,8 @@ class BookDashboard extends Component {
                                             Rs.{data.price}
                                         </Typography>
                                     </CardContent>
-
-
                                     {
                                         this.displayButton(data.bookId)
-
                                     }
                                 </Card>
                             );
