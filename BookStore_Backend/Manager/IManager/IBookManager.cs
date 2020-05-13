@@ -1,4 +1,5 @@
-﻿using Model.ModelCLasses;
+﻿using Microsoft.AspNetCore.Http;
+using Model.ModelCLasses;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,5 +11,6 @@ namespace Manager.IManager
     {
         IEnumerable<BookModel> GetAllBook();
         Task<int> AddBook(BookModel entity);
+        string Image(IFormFile file, int id);
     }
 }

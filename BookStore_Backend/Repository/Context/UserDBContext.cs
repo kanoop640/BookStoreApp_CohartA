@@ -12,13 +12,22 @@ namespace Repository.Context
         {
 
         }
-        public DbSet<BookModel> Book
+        public DbSet<BookModel> BookContext
         {
             get; set;
         }
-        public DbSet<CartModel> Cart
+        public DbSet<CartModel> CartContext
         {
             get; set;
+        }
+
+        public DbSet<CustomerDetails> AddressContext
+        {
+            get; set;
+        }
+        public DbSet<LogInModel> LoginContext
+        {
+            get;set;
         }
     }
 }

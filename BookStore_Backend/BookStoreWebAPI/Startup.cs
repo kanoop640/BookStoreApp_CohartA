@@ -44,10 +44,18 @@ namespace BookStoreWebAPI
                    sqlServerOptions => sqlServerOptions.MigrationsAssembly("Repository")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddTransient<IBookManager, BookManager>();
             services.AddTransient<IBookRepo, BookRepoIMPL>();
-            services.AddTransient<IBookRepo, BookRepoIMPL>();
+
+           
             services.AddTransient<ICartRepo,CartRepoIMPL>();
-            services.AddTransient<IBookManager,BookManager>();
+            services.AddTransient<ICartManager, CartManager>();
+
+            services.AddTransient<ICustomerDetailsRepo, CustomerDetailsRepoIMPL>();
+            services.AddTransient<ICustomerDetailsManager, CustomerDetailsManager>();
+
+            services.AddTransient<ILoginManager,LoginManager>();
+            services.AddTransient<ILoginRepo,LoginRepoIMPL>();
 
             ILoggerFactory loggerFactory = new LoggerFactory();
             loggerFactory.AddDebug();
@@ -69,13 +77,29 @@ namespace BookStoreWebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "myapi v1"); });
             }
-            else
+            else 
             {
                 app.UseHsts();
             }
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin();
+                builder.AllowAnyMethod();
+                builder.AllowAnyHeader();
+            });
+            // app.UseMvc();
+
+            app.UseStaticFiles();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=CartController}/{action=addcartmodel}/{id?}"
+                    );
+            });
         }
     }
 }
