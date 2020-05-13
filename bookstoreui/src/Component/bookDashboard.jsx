@@ -13,6 +13,7 @@ class BookDashboard extends Component {
         super(props)
         console.log(props.books)
         this.state = {
+            arr:[],
             count: 0,
         }
     }
