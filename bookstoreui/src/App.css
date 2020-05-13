@@ -71,8 +71,13 @@ margin-right: 20px;
 .display-books{
   display: flex;
     flex-wrap: wrap;
+     margin-top: 50px;
+    margin:auto;
     justify-content: center;
     align-items: center;
+    margin-left:100px;
+    margin-right:100px;
+    margin-bottom: 15px;
 
 }
 
@@ -116,10 +121,9 @@ margin:0px;
 
 
 .footer{
-  position: absolute;
-  left:0;
-  right:0;
-  bottom:0
+  position: relative;
+  bottom:0;
+  width: 100%;
 }
 
 .AppBar{
@@ -159,8 +163,7 @@ margin:0px;
     position: relative;
     left:0;
     right:0;
-    bottom:0;
-    top:70px;
+    bottom:10px;
   }
  #card-details{
   height: 45px;
@@ -245,6 +248,7 @@ td, th {
 }
 #buttonId{
 background-color: #0000FF;
+height: 32px;
 }
 
 .success-message-card{
@@ -258,7 +262,8 @@ background-color: #0000FF;
 
 .add-to-cart{
   width: 20em;
-  height: 35px;
-  background: brown;
-  border-radius: 5px;
+  height: 37px;
+  background:#0000FF;
+  border-radius: 7px;
+  color: white;
 }

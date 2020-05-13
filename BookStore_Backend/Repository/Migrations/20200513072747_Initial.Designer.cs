@@ -9,10 +9,8 @@ using Repository.Context;
 namespace Repository.Migrations
 {
     [DbContext(typeof(UserDBContext))]
-   
-    
-    [Migration("20200512093518_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20200513072747_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -87,6 +85,7 @@ namespace Repository.Migrations
 
                     b.ToTable("AddressContext");
                 });
+
             modelBuilder.Entity("Model.ModelCLasses.LogInModel", b =>
                 {
                     b.Property<string>("Email")

@@ -4,7 +4,7 @@ import Header from './header'
 import dragon from '../assets/dragon.jpg'
 import Footer from './footer'
 import { getBook } from '../Service/service'
-import OrderSummary from'./orderSummary';
+import OrderSummary from './orderSummary';
 
 class Dashboard extends Component {
     constructor(props) {
@@ -17,22 +17,22 @@ class Dashboard extends Component {
             price: '',
             description: '',
             result: [],
-            cart:[]
+            cart: []
         }
     }
-        
-   func =async() =>{
-           console.log("test")
-            let result = await getBook()
-            console.log(result)
-            this.setState({result})
-        }
+
+    func = async () => {
+        console.log("test")
+        let result = await getBook()
+        //console.log(result)
+        this.setState({ result })
+    }
     componentDidMount() {
         this.func();
-            }
+    }
 
-    addToCart=(id) => {
-        this.setState({cart:[ ...this.state.cart,id]})
+    addToCart = (id) => {
+        this.setState({ cart: [...this.state.cart, id] })
     }
 
     render() {
@@ -40,7 +40,7 @@ class Dashboard extends Component {
         return (
             <div>
                 <Header />
-                <BookDashboard books={this.state.result} AddToCart={this.addToCart} cart={this.state.cart}/>
+                <BookDashboard books={this.state.result} AddToCart={this.addToCart} cart={this.state.cart} />
                 <Footer />
             </div>
         )
