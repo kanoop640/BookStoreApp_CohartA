@@ -30,15 +30,24 @@ namespace BookStoreWebAPI.Controllers
             {
                 return this.Ok(bookModel);
             }
-                return this.BadRequest();
+            return BadRequest();
         }
 
         [Route("getallbook")]
         [HttpGet]
         public IActionResult GetAllBook()
         {
-             IEnumerable < BookModel > books = this.bookManager.GetAllBook();
-             return this.Ok(books);
+            IEnumerable<BookModel> books = this.bookManager.GetAllBook();
+            return this.Ok(books);
+        }
+
+        [Route("imageupload")]
+        [HttpPost]
+        public IActionResult Image(IFormFile file, int id)
+        {
+            var result = this.bookManager.Image(file, id);
+
+            return this.Ok(result);
         }
     }
 }
