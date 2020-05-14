@@ -329,17 +329,17 @@ height: 32px;
    margin-top: 20px;
    margin-left: 40px;
    display: flex;
- 
+
  }
  .Pincode{
    margin-top: 10px;
    margin-left: 40px;
    display: flex;
- 
+
  }
  .button1{
    margin-left:460px;
-   margin-top: 1px;  
+   margin-top: 1px;
    color:white;
    background-color: rgb(12, 52, 161);
    height: 40px;
@@ -357,7 +357,7 @@ height: 32px;
  .space{
    margin-left:10px;
    display:flex;
-   width: 40%;   
+   width: 40%;
  }
  .fullsize{
    width: 460px;
@@ -386,7 +386,7 @@ height: 32px;
    width: 20px;
    border-radius: 8px;
    border-color: rgb(33, 23, 175);
- 
+
  }
  .a{
    margin-left: 5px;
@@ -424,14 +424,17 @@ height: 32px;
   height: 30px;
   margin-right: 58px;
   border-radius: 5px;
+  outline: none;
 }
 .div-field-styles{
   padding-bottom: 13px;
     padding-top: 10px;
+    outline: none;
 }
 .field-styles-address{
   height: 45px;
   width: 30em;
+  outline: none;
   border-radius: 5px;
 }
 .outer-div{
@@ -443,4 +446,93 @@ height: 32px;
 }
 .radio-styles{
   margin-right: 30px;
+}
+
+.book-details{
+  border: 0px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+.customer-details{
+  margin-top: 10px;
+}
+.placeOrder{
+  margin-left: 470px;
+}
+.orderSummry{
+  margin-top: 17px;
+  width: 600px;
+  height: 40px;
+  align-items: center;
+  display: flex;
+  margin-bottom: 20px;
+}
+#buttonStyles{
+  background-color: #0000FF;
+        width: 110px;
+}
+.customerDetails{
+  margin-top: 17px;
+        height: 400px;
+        width: 600px;
+}
+.cartCard{
+  justify-content: 'center';
+  align-items: 'center';
+  width: 600px;
+}
+.imgStyle{
+  height: 170px;
+  width: 115px,
+}
+
+.cart-style-header{
+  margin-bottom:33px;
+    font-size:11px;
+}
+#book-icon{
+  width: 150px;
+  margin-left: 80px;
+  display: "flex";
+}
+  .rightIcons{
+    width: 100px;
+    display: "flex";
+    justify-content: "space-around";
+}
+.header-color{
+  background-color: Brown;
+}
+.cart-icon-styles{
+  margin-left: 50px;
+}
+
+.img-style-dashboard{
+  height: 170px;
+  width: 115px;
+}
+.card-add{
+  height: 32px;
+  width: 96px;
+  border-radius: 7px;
+  background-color: brown;
+}
+
+.cartWish{
+  height: 32px;
+  width: 80px;
+  border-radius: 7px;
+  border-color: green;
+}
+#card-detail{
+  height: 45px;
+        padding-top: 4px;
+        padding-left: 10px;
+}
+.fontsize{
+  font-size: 13px;
+  color: dimgray ;
+}
+.font-size-rs{
+  font-size: 15px;
 }

@@ -29,19 +29,21 @@ class BookDashboard extends Component {
             return (
 
                 <CardActions>
-                    <Button className="MuiButton-outlined"
-                        style={styles.cartAdd}
+                    <span  className="card-add">
+                    <Button
                         onClick={() => this.props.AddToCart(id)}
                         variant='outlined'
                         color='default'
                     > Add to cart</Button>
+                    </span>
+                    <span className="cartWish">
                     <Button
-                        className="MuiButton-outlined"
-                        style={styles.cartWish}
+                        className="cartWish"
                         onClick={()=> this.props.AddToWishlist(id)}
                         variant='outlined'
                         color='default'
                     > Wishlist</Button>
+                    </span>
                 </CardActions>
             );
         }
@@ -52,7 +54,7 @@ class BookDashboard extends Component {
             <div>
                 <div className='title-div'>
                     <Typography variant='h6'>
-                        Books<span style={styles.totalBook}>({this.props.books.length} items)</span>
+                        Books<span className="img-style-dashboard">({this.props.books.length} items)</span>
                         </Typography>
                     <div>
                         <select className='sort' >
@@ -68,21 +70,21 @@ class BookDashboard extends Component {
                         this.props.books.map((data) => {
                             return (
                                 <Card className='note-card' >
-                                    <Tooltip style={styles.hover} title={data.description}>
+                                    <Tooltip title={data.description}>
                                         <div className="image-div" >
-                                            <img src={data.image} style={styles.imgStyle}></img>
+                                            <img className="img-style-dashboard" src={data.image}></img>
                                         </div>
                                     </Tooltip>
 
-                                    <CardContent id='card-detail' style={styles.cardDetails}>
+                                    <CardContent id='card-detail'>
                                         <Typography variant="h7" component="h4">
                                             {data.title}
                                         </Typography>
-                                        <Typography style={styles.fontsize}>
-                                            by {data.author}
+                                        <Typography>
+                                            <span className="fontsize">by {data.author}</span>
                                         </Typography>
-                                        <Typography component="h4" style={styles.fontSizeRs}>
-                                            Rs.{data.price}
+                                        <Typography component="h4">
+                                            <span className="font-size-rs">Rs.{data.price}</span>
                                         </Typography>
                                     </CardContent>
                                     {
@@ -102,45 +104,5 @@ class BookDashboard extends Component {
 
     }
 
-}
-const styles = {
-    imgStyle: {
-        height: 170,
-        width: 115,
-    },
-    hover: {
-        heigth: 50,
-        wigth: 50,
-    },
-    cartAdd: {
-        borderWidth: 1,
-        paddingLeft: 3,
-        paddingRight: 4,
-        borderColor: 'Blue',
-        height: 32,
-    },
-    cartWish: {
-        borderWidth: 1,
-        paddingLeft: 3,
-        paddingRight: 4,
-        borderColor: 'green',
-        height: 32,
-    },
-    cardDetails: {
-        height: 45,
-        paddingTop: 4,
-        paddingLeft: 10,
-    },
-    fontsize: {
-        fontSize: 13,
-        color: 'dimgray '
-    },
-    fontSizeRs: {
-        fontSize: 15,
-    },
-    totalBook:{
-        fontSize:13,
-    color: 'gainsboro',
-    }
 }
 export default BookDashboard;

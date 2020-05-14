@@ -17,12 +17,10 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <AppBar position="static" className="MuiAppBar-colorPrimary" style={styles.headerColor}>
+        <AppBar position="static" className="MuiAppBar-colorBrown"style={styles.headerColor}>
           <Toolbar variant="dense" className="toolbar">
-            <div className="temp" style={styles.bookIcon} onClick={() => this.props.movedToCartFunc(false)}>
+            <div className="temp" id="book-icon" onClick={() => this.props.movedToCartFunc(false)}>
               <MenuBookIcon fontSize='medium' />
-              {/* </div>
-                            <div className='book-title'> */}
               <Typography variant='h6'>
                 Book Store
                             </Typography>
@@ -38,13 +36,15 @@ class Header extends Component {
                 placeholder="Search..."
               />
             </div>
-            <div style={styles.rightIcons}>
+            <div className="rightIcons">
               <FavoriteBorderOutlinedIcon fontSize='medium' />
+              <span className="cart-icon-styles">
               <ShoppingCartOutlinedIcon fontSize='medium' 
               onClick={() => this.props.movedToCartFunc(true)}
               />
+              </span>
             </div>
-            <div style={styles.cartStyle}>
+            <div className="cart-style-header">
               {
           this.props.cart.length
        }
@@ -57,25 +57,8 @@ class Header extends Component {
 
 }
 const styles = {
-  bookIcon: {
-    width: 150,
-    marginLeft: 80,
-    display: "flex"
-  },
-  cartIcon: {
-    marginLeft: 90,
-  },
-  rightIcons: {
-    width: 100,
-    display: "flex",
-    justifyContent: "space-around"
-  },
   headerColor: {
     backgroundColor: 'Brown',
-  },
-  cartStyle:{
-    marginBottom:33,
-    fontSize:11,
   }
 }
 export default Header
