@@ -2,12 +2,45 @@ import React, { Component } from "react"
 import { Card, Button, Typography } from '@material-ui/core'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
+import getAllCartItem from'../Service/service'
 class MyCarts extends Component {
     constructor(props) {
         super(props)
+        this.state={
+            cart:[],
+            flag:false,
+            open:false,
+        }
     }
+//     componentDidMount(){
+//         getAllCartItem()
+//         .then(respons=>{
+//             if(response)
+//             {
+// this.setState({
+//     cart:respons.data
+// })
+//             }
+//             else{
+//                 console.log("cart failure")
+//             }
+//         }
+
+//         )
+//     }
+
+handleClick=()=>{
+this.setState({
+    flag:true
+})
+}
+handleCustomerDetails=()=>{
+    this.setState({
+        open:true
+    })
+}
     render() {
-        const booksInCart = this.props.books.filter(book => this.props.cart.includes(book.bookId))
+         const booksInCart = this.props.books.filter(book => this.props.cart.includes(book.bookId))
 
         return (
             <div>
@@ -48,18 +81,26 @@ class MyCarts extends Component {
 
                                             </tr>
                                         </table>
-                                        <div className="placeOrder">
-                                        <Button>Place Order</Button>
-                                        </div>
-                                    </div>
+                                                                            </div>
 
                                 )
                             })
                         }
+<div className="placeOrder">
+                                        <Button>Place Order</Button>
+                                        </div>
 
                     </div>
                 </Card>
-                <Card className="customerDetails">
+                {
+                !this.state.open?(
+                    <Card className="orderSummry" 
+                    onClick={this.handleCustomerDetails}
+                        >  
+                        Customer Details
+                    </Card>
+                ):(
+                    <Card className="customerDetails">
                     <div className="outer-div">
                         <span className="customer-details">Customer Details</span>
                         <div className="div-field-styles">
@@ -91,9 +132,22 @@ class MyCarts extends Component {
                         </div>
                     </div>
                 </Card>
-                <Card className="orderSummry">  
-                    Order Summary
-                </Card>
+                )
+                }
+                {
+                    !this.state.flag?(
+                        <Card className="orderSummry" 
+                        onClick={this.handleClick}
+                        >  
+                        Order Summary
+                    </Card>
+                    ):(
+                        <Card className="orderSummry">  
+                        Order
+                    </Card>  
+                    )
+                }
+               
             </div>
         )
     }
