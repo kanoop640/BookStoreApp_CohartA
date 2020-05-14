@@ -13,15 +13,13 @@ class BookDashboard extends Component {
         super(props)
         console.log(props.books)
         this.state = {
-            arr:[],
-            count: 0,
         }
     }
     displayButton(id) {
         if (this.props.cart.includes(id)) {
 
             return (
-                <CardActions className="">
+                <CardActions>
                     <button className="add-to-cart">Added to cart</button>
                 </CardActions>
             )
@@ -37,10 +35,10 @@ class BookDashboard extends Component {
                         variant='outlined'
                         color='default'
                     > Add to cart</Button>
-
                     <Button
                         className="MuiButton-outlined"
                         style={styles.cartWish}
+                        onClick={()=> this.props.AddToWishlist(id)}
                         variant='outlined'
                         color='default'
                     > Wishlist</Button>
@@ -54,7 +52,7 @@ class BookDashboard extends Component {
             <div>
                 <div className='title-div'>
                     <Typography variant='h6'>
-                        Books
+                        Books<span style={styles.totalBook}>({this.props.books.length} items)</span>
                         </Typography>
                     <div>
                         <select className='sort' >
@@ -139,6 +137,10 @@ const styles = {
     },
     fontSizeRs: {
         fontSize: 15,
+    },
+    totalBook:{
+        fontSize:13,
+    color: 'gainsboro',
     }
 }
 export default BookDashboard;
