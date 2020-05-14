@@ -30,13 +30,22 @@ namespace BookStoreWebAPI.Controllers
         }
 
         // POST: api/Cart
-        [Route("updatecartmodel")]
+        [Route("addcartmodel")]
         [HttpPost]
+        public async Task<IActionResult> AddCartModel(CartModel bookModel)
+        {
+            var result = await this._cartManager.AddCartModel(bookModel);
+                return this.Ok(result);
+        }
+
+
+        // PUT: api/Cart
+        [Route("updatecartmodel")]
+        [HttpPut]
         public async Task<IActionResult> UpdateCartModel(CartModel cartModelnew)
         {
-
-            int result = await this._cartManager.UpdateCartModel(cartModelnew);
-            if (result == 0)
+            var result = await this._cartManager.UpdateCartModel(cartModelnew);
+            if (result==0)
                 return BadRequest(ModelState);
             else
                 return this.Ok(cartModelnew);
@@ -51,19 +60,7 @@ namespace BookStoreWebAPI.Controllers
             var result = await this._cartManager.DeleteCartModel(id);
             return result;
         }
-
-
-        [Route("addcartmodel")]
-        [HttpPost]
-        public async Task<IActionResult> AddCartModel(CartModel bookModel)
-        {
-            var result = await this._cartManager.AddCartModel(bookModel);
-            if (result == 1)
-            {
-                return this.Ok(bookModel);
-            }
-            return BadRequest();
-        }
+      
     }
 }
 
