@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Typography from '@material-ui/core/Typography';
 import { Card, Button } from '@material-ui/core';
 import capture from '../assets/capture.jpg'
-import Dashboard from './dashboard'
 class OrderSummary extends Component {
     constructor(props) {
         super(props);

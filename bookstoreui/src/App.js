@@ -6,6 +6,7 @@ import Dashboard from './Component/dashboard'
 import './App.css';
 import OrderSummary from './Component/orderSummary'
 import Mycart from './Component/MyCart';
+import MyCarts from './Component/myCarts'
 function App() {
   
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path='/dashboard' component={Dashboard}></Route>
       <Route path='/orderSummary' component={OrderSummary}></Route>
       <Route path='/MyCart' component={Mycart}></Route>
+      <Route path='/MyCarts' component={MyCarts}></Route>
       </Switch>
     </Router>
       )

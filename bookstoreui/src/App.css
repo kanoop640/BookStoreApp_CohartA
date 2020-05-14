@@ -259,7 +259,13 @@ height: 32px;
     text-align: center;
     margin: auto
 }
-
+.cart-continue{
+  background-color: #0000FF;
+  border-radius: 5px;
+    height: 30px;
+    width: 85px;
+    margin-left: 35em;
+}
 .add-to-cart{
   width: 20em;
   height: 37px;
@@ -315,8 +321,8 @@ height: 32px;
    margin-left:77%;
    color:white;
    background-color: rgb(12, 52, 161);
-   height: 40px;
-   width: 130px;
+   height: 33px;
+   width: 98px;
    border-radius: 10px;
  }
  .details{
@@ -369,11 +375,10 @@ height: 32px;
    margin-left: 200px;
    border-radius: 7px;
  }
- .b{
+ .value-textfield{
    margin-left: 5px;
    height: 23px;
-   width: 50px;
-   box-shadow: 3px 3px 3px 3px grey;
+   width: 10px;
  }
  .c{
    margin-left: 5px;
@@ -402,3 +407,40 @@ height: 32px;
  .f{
    height: 20px;
  }
+.text-textfield{
+  height:3px;
+}
+
+
+
+
+
+
+.cart-card{
+  height:400px;
+  width:600px;
+}
+.field-styles{
+  height: 30px;
+  margin-right: 58px;
+  border-radius: 5px;
+}
+.div-field-styles{
+  padding-bottom: 13px;
+    padding-top: 10px;
+}
+.field-styles-address{
+  height: 45px;
+  width: 30em;
+  border-radius: 5px;
+}
+.outer-div{
+  margin-left: 65px;
+}
+.type-div{
+  margin-top: 12px;
+  margin-bottom: 13px;
+}
+.radio-styles{
+  margin-right: 30px;
+}
