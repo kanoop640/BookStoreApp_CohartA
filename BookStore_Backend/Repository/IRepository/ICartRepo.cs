@@ -6,6 +6,7 @@ namespace Repository.IRepository
     using Microsoft.AspNetCore.Mvc;
     using Model.ModelCLasses;
     using System.Collections.Generic;
+    using System.Linq;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -17,7 +18,7 @@ namespace Repository.IRepository
         /// Declare GetAll Methods.
         /// </summary>
         /// <returns>AllBookItemsInCart.</returns>
-        IEnumerable<CartModel> GetCartContext();
+        IQueryable GetCartContext();
 
         /// <summary>
         /// Declare Add Method.

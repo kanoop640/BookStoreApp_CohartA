@@ -4,6 +4,7 @@ using Model.ModelCLasses;
 using Repository.IRepository;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,7 +29,7 @@ namespace Manager.ManagerIMPL
             return result;
         }
 
-        public IEnumerable<CartModel> GetCartContext()
+        public IQueryable GetCartContext()
         {
             return this._cartRepo.GetCartContext();
         }
