@@ -9,12 +9,17 @@ import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 class Header extends Component {
+
+  constructor(props){
+    super(props)
+  }
+
   render() {
     return (
       <div>
         <AppBar position="static" className="MuiAppBar-colorPrimary" style={styles.headerColor}>
           <Toolbar variant="dense" className="toolbar">
-            <div className="temp" style={styles.bookIcon}>
+            <div className="temp" style={styles.bookIcon} onClick={() => this.props.movedToCartFunc(false)}>
               <MenuBookIcon fontSize='medium' />
               {/* </div>
                             <div className='book-title'> */}
@@ -35,11 +40,17 @@ class Header extends Component {
             </div>
             <div style={styles.rightIcons}>
               <FavoriteBorderOutlinedIcon fontSize='medium' />
-              <ShoppingCartOutlinedIcon fontSize='medium' />
+              <ShoppingCartOutlinedIcon fontSize='medium' 
+              onClick={() => this.props.movedToCartFunc(true)}
+              />
             </div>
+            <div style={styles.cartStyle}>
+              {
+          this.props.cart.length
+       }
+       </div>
           </Toolbar>
         </AppBar>
-
       </div>
     )
   }
@@ -61,6 +72,10 @@ const styles = {
   },
   headerColor: {
     backgroundColor: 'Brown',
+  },
+  cartStyle:{
+    marginBottom:33,
+    fontSize:11,
   }
 }
 export default Header
