@@ -45,7 +45,7 @@ class Dashboard extends Component {
 
 
     render() {
-        console.log(this.state.movedToCart)
+       // console.log(this.state.movedToCart)
         if(this.state.movedToCart)
         {
             return (
