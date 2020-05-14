@@ -12,8 +12,9 @@ class BookDashboard extends Component {
     constructor(props) {
         super(props)
         console.log(props.books)
-        this.state={
-            count:0,
+        this.state = {
+            arr:[],
+            count: 0,
         }
     }
     displayButton(id) {
@@ -29,7 +30,7 @@ class BookDashboard extends Component {
 
             return (
 
-                <CardActions className="">
+                <CardActions>
                     <Button className="MuiButton-outlined"
                         style={styles.cartAdd}
                         onClick={() => this.props.AddToCart(id)}
@@ -79,10 +80,10 @@ class BookDashboard extends Component {
                                         <Typography variant="h7" component="h4">
                                             {data.title}
                                         </Typography>
-                                        <Typography variant="h10">
-                                            {data.author}
+                                        <Typography style={styles.fontsize}>
+                                            by {data.author}
                                         </Typography>
-                                        <Typography varient="h10">
+                                        <Typography component="h4" style={styles.fontSizeRs}>
                                             Rs.{data.price}
                                         </Typography>
                                     </CardContent>
@@ -117,18 +118,27 @@ const styles = {
         borderWidth: 1,
         paddingLeft: 3,
         paddingRight: 4,
-        borderColor: 'Blue'
+        borderColor: 'Blue',
+        height: 32,
     },
     cartWish: {
         borderWidth: 1,
         paddingLeft: 3,
         paddingRight: 4,
-        borderColor: 'green'
+        borderColor: 'green',
+        height: 32,
     },
     cardDetails: {
         height: 45,
         paddingTop: 4,
         paddingLeft: 10,
+    },
+    fontsize: {
+        fontSize: 13,
+        color: 'dimgray '
+    },
+    fontSizeRs: {
+        fontSize: 15,
     }
 }
 export default BookDashboard;

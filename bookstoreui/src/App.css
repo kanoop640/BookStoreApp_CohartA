@@ -78,6 +78,7 @@ margin-right: 20px;
     margin-left:100px;
     margin-right:100px;
     margin-bottom: 15px;
+
 }
 
 .MuiPaper-root.MuiCard-root.note-card.MuiPaper-elevation1.MuiPaper-rounded{
@@ -120,10 +121,9 @@ margin:0px;
 
 
 .footer{
-  position: absolute;
-  left:0;
-  right:0;
-  bottom:0
+  position: relative;
+  bottom:0;
+  width: 100%;
 }
 
 .AppBar{
@@ -163,8 +163,7 @@ margin:0px;
     position: relative;
     left:0;
     right:0;
-    bottom:0;
-    top:70px;
+    bottom:10px;
   }
  #card-details{
   height: 45px;
@@ -249,6 +248,7 @@ td, th {
 }
 #buttonId{
 background-color: #0000FF;
+height: 32px;
 }
 
 .success-message-card{
@@ -267,6 +267,7 @@ background-color: #0000FF;
   border-radius: 7px;
   color: white;
 }
+
 
 
 

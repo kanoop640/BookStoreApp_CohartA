@@ -21,9 +21,9 @@ namespace BookStoreWebAPI.Controllers
         }
 
         // GET: api/Cart
-        [Route("getcartcontext")]
+        [Route("getcartcontext")] 
         [HttpGet]
-        public IEnumerable<CartModel> GetCartContext()
+        public IQueryable GetCartContext()
         {
             var cartContext = this._cartManager.GetCartContext();
             return cartContext;

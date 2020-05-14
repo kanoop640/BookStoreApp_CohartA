@@ -45,85 +45,35 @@ namespace Repository.RepositoryIMPL
             return result;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-     
-       
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Get All Cart Item from CartContext
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<CartModel> GetCartContext()
+        public IQueryable GetCartContext()
         {
-             return  this._context.CartContext.ToList();
+            var result = this._context.CartContext.Join(this._context.BookContext,
+                Cart => Cart.BookId,
+                Book => Book.BookId,
+                (Cart, Book) =>
+                new
+                {
+                    bookId = Book.BookId,
+                    bookTitle = Book.Title,
+                    authorName = Book.Author,
+                    bookImage = Book.Image,
+                    bookPrice = Book.Price,
+                    cartId = Cart.CartId,
+                    count = Cart.Count
+                });
+            return result;
         }
 
+        /*
+                /// <summary>
+                /// Get All Cart Item from CartContext
+                /// </summary>
+                /// <returns></returns>
+                public IEnumerable<CartModel> GetCartContext()
+                {
+                     return  this._context.CartContext.ToList();
+                }
+        */
         /// <summary>
         /// Update the number of books in cartItem
         /// </summary>

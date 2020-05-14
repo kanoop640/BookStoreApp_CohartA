@@ -2,6 +2,7 @@
 using Model.ModelCLasses;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,7 +14,7 @@ namespace Manager.IManager
         /// Declare GetAll Methods.
         /// </summary>
         /// <returns>AllEmployee.</returns>
-        IEnumerable<CartModel> GetCartContext();
+        IQueryable GetCartContext();
 
         /// <summary>
         /// Declare Add Method.
