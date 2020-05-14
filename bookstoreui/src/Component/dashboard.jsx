@@ -5,6 +5,7 @@ import dragon from '../assets/dragon.jpg'
 import Footer from './footer'
 import { getBook } from '../Service/service'
 import OrderSummary from './orderSummary';
+import MyCarts from './myCarts'
 
 class Dashboard extends Component {
     constructor(props) {
@@ -17,14 +18,15 @@ class Dashboard extends Component {
             price: '',
             description: '',
             result: [],
-            cart: []
+            cart: [],
+            movedToCart:false,
+            addedToCart:[]
         }
     }
 
     func = async () => {
         console.log("test")
         let result = await getBook()
-        //console.log(result)
         this.setState({ result })
     }
     componentDidMount() {
@@ -32,18 +34,37 @@ class Dashboard extends Component {
     }
 
     addToCart = (id) => {
-        this.setState({ cart: [...this.state.cart, id] })
+        if(!this.state.cart.includes(id)){
+            this.setState({ cart: [...this.state.cart, id] })
+        }
     }
 
-    render() {
+    setMoveToCart = (value) => {
+        this.setState({movedToCart: value})
+    }
 
+
+    render() {
+        console.log(this.state.movedToCart)
+        if(this.state.movedToCart)
+        {
+            return (
+                <div>
+                    <Header cart={this.state.cart} movedToCartFunc ={this.setMoveToCart}/>
+                    <MyCarts cart={this.state.cart} books={this.state.result}/>
+                    <Footer />
+                </div>
+            ) 
+        }
+        else{
         return (
             <div>
-                <Header />
+                <Header cart={this.state.cart}  movedToCartFunc = {this.setMoveToCart}/>
                 <BookDashboard books={this.state.result} AddToCart={this.addToCart} cart={this.state.cart} />
                 <Footer />
             </div>
         )
+        }
 
     }
 }
