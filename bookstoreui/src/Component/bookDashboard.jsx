@@ -103,7 +103,7 @@ class BookDashboard extends Component {
                                                     > Added to cart</Button>:
                                                     <div>                                                    
                                                         <Button
-                                                        onClick={() => { this.props.addToCartHandler(data.BookId, data.bookCount) }}
+                                                        onClick={() => {this.props.addToCartHandler(data.BookId, data.bookCount) }}
                                                         variant='outlined'
                                                         color='default'
                                                     > Add to cart</Button>

@@ -38,13 +38,15 @@ class Header extends Component {
             </div>
             <div className="rightIcons">
               <FavoriteBorderOutlinedIcon fontSize='medium' />
-              <span className="cart-icon-styles">
+              <span className="cart-icon-styles" >
               <ShoppingCartOutlinedIcon fontSize='medium' 
-              onClick={() => this.props.movedToCartFunc(true)}
+             // onClick={() => this.props.movedToCartFunc(true)}
+             onClick={this.props.cartIconClickedHandler}
               />
               </span>
             </div>
             <div className="cart-style-header">
+            {this.props.cartCount}
               {/* {
           this.props.cart.length
        } */}

@@ -12,16 +12,16 @@ class Dashboard extends Component {
     constructor(props) {
         super();
         this.state = {
-            bookId: '',
-            title: '',
-            author: '',
-            image: '',
-            price: '',
-            description: '',
+            // bookId: '',
+            // title: '',
+            // author: '',
+            // image: '',
+            // price: '',
+            // description: '',
             result: [],
-            cart: [],
-            movedToCart:false,
-            addedToCart:[],
+            //cart: [],
+            //movedToCart:false,
+            //addedToCart:[],
             clickedId: [],
             BookCount: 0,
             cartCount: 0,
@@ -39,27 +39,34 @@ class Dashboard extends Component {
         this.func();
     }
 
-    addToCart = (id) => {
-        if(!this.state.cart.includes(id)){
-            this.setState({ cart: [...this.state.cart, id] })
-        }
-    }
+    // addToCart = (id) => {
+    //     if(!this.state.cart.includes(id)){
+    //         this.setState({ cart: [...this.state.cart, id] })
+    //     }
+    // }
 
     setMoveToCart = (value) => {
         this.setState({movedToCart: value})
     }
-
+    cartIconClickedHandler = () => {
+        let doesShowMyCartComponent = this.state.showMyCartComponent;
+        this.setState({
+            showMyCartComponent: !doesShowMyCartComponent
+        })
+    }
     addToCartHandler = (clickedID,AvaliableBooks) => {
         let cartCount = this.state.cartCount;
         let clickedidArray = this.state.clickedId;
         clickedidArray.push(clickedID);
         console.log(clickedID);
         //console.log(window.sessionStorage.getItem("email"));
+        if(!this.state.result.includes(clickedID))
         this.setState({
             cartCount: cartCount + 1,
             clickedId: [...clickedidArray],
             addToBagBtnText: "Added to bag"
         })
+    
         var cart = {
             BookId: clickedID ,
             Count: AvaliableBooks
@@ -72,16 +79,22 @@ class Dashboard extends Component {
     render() {
         return(
             <div>
-            <Header/>
+            <Header
+            cartCount={this.state.cartCount}
+            cartIconClickedHandler={this.cartIconClickedHandler}
+                />
             {
                 this.state.showMyCartComponent?
                 <myCart/>
                 :
                 <BookDashboard
                  books={this.state.result} 
-                 AddToCart={this.addToCart} 
-                 cart={this.state.cart} 
-                 addToCartHandler={this.addToCartHandler}/>
+                //  AddToCart={this.addToCart} 
+                //  cart={this.state.cart} 
+                 addToCartHandler={this.addToCartHandler}
+                 clickedId={this.state.clickedId}
+                 addToBagBtnText={this.state.addToBagBtnText}
+                 />
             }
             </div>
         )

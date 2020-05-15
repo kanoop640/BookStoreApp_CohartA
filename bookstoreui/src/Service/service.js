@@ -78,6 +78,19 @@ export async function deleteCartItemById(cartid) {
     }
 }
 
+export async function getcountofcartitem(){
+    try{
+        axios.get("https://localhost:44381/api/Cart/countofbook")
+        .then(response => {
+            return response
+        })
+    }
+    catch(error){
+        console.log("error while fetching all Employee Details" + error)
+        return Promise.resolve(false)
+    }
+ }
+
 //end of cartcontext
 
 //customeraddressdetails
