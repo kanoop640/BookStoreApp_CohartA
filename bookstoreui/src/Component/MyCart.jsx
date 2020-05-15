@@ -16,14 +16,20 @@ class Mycart extends Component {
                 </div>
 
                     <div className="incrementDecrement">
-                        <button onClick="add()" className="c">+</button>
+                        {/* <Button onClick="add()" className="add">+</Button> */}
+                        <Button variant="contained" color="primary" href="#contained-buttons" className="add">
+                               +
+                        </Button>
                         <input type="text" id="somya" className="b" />
-                        <button onClick="sub()" className="c">-</button>
+                        {/* <Button onClick="sub()" className="add">-</Button> */}
+                        <Button variant="contained" color="primary" href="#contained-buttons" className="add">
+                               -
+                        </Button>
                         {/* <button className="d">Remove</button> */}
                         <Button color="primary">Remove</Button>
                     </div>
 
-                    <button class="button">Place Order</button>
+                    <Button class="button">Place Order</Button>
 
                 </div>
 
@@ -35,7 +41,7 @@ class Mycart extends Component {
 
                         <div className="details">
                             <div>
-                                <TextField id="outlined-basic" label="Name" variant="outlined" height="10px" />
+                                <TextField id="outlined-basic" label="Name" variant="outlined" />
                             </div>
                             <div className="space">
                                 <TextField id="outlined-basic" label="Phoneno." variant="outlined" />
@@ -69,19 +75,19 @@ class Mycart extends Component {
                    </div>
                         <div className="sss">
                             <div>
-                                <button onClick="sub()" className="e"></button>
+                                <Button onClick="sub()" className="e"></Button>
                                    Home
                             </div>
                             <div>
-                                <button onClick="sub()" className="e"></button>
+                                <Button onClick="sub()" className="e"></Button>
                                    Work
                             </div>
                             <div>
-                                <button onClick="sub()" className="e"></button>
+                                <Button onClick="sub()" className="e"></Button>
                                  Other
                             </div>
                         </div>
-                        <button class="button1">CONTINUE</button>
+                        <Button class="button1">CONTINUE</Button>
                     </div>
                 </div>
 
