@@ -8,46 +8,49 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
 class BookDashboard extends Component {
-
-    constructor(props) {
+    constructor(props){
         super(props)
-        console.log(props.books)
-        this.state = {
-        }
     }
-    displayButton(id) {
-        if (this.props.cart.includes(id)) {
 
-            return (
-                <CardActions>
-                    <button className="add-to-cart">Added to cart</button>
-                </CardActions>
-            )
-        }
-        else {
+    // constructor(props) {
+    //     super(props)
+    //     console.log(props.books)
+    //     this.state = {
+    //     }
+    //}
+    // displayButton(id) {
+    //     if (this.props.cart.includes(id)) {
 
-            return (
+    //         return (
+    //             <CardActions>
+    //                 <button className="add-to-cart">Added to cart</button>
+    //             </CardActions>
+    //         )
+    //     }
+    //     else {
 
-                <CardActions>
-                    <span  className="card-add">
-                    <Button
-                        onClick={() => this.props.AddToCart(id)}
-                        variant='outlined'
-                        color='default'
-                    > Add to cart</Button>
-                    </span>
-                    <span className="cartWish">
-                    <Button
-                        className="cartWish"
-                        onClick={()=> this.props.AddToWishlist(id)}
-                        variant='outlined'
-                        color='default'
-                    > Wishlist</Button>
-                    </span>
-                </CardActions>
-            );
-        }
-    }
+    //         return (
+
+    //             <CardActions>
+    //                 <span className="card-add">
+    //                     <Button
+    //                         onClick={() => this.props.AddToCart(id)}
+    //                         variant='outlined'
+    //                         color='default'
+    //                     > Add to cart</Button>
+    //                 </span>
+    //                 <span className="cartWish">
+    //                     <Button
+    //                         className="cartWish"
+    //                         onClick={() => this.props.AddToWishlist(id)}
+    //                         variant='outlined'
+    //                         color='default'
+    //                     > Wishlist</Button>
+    //                 </span>
+    //             </CardActions>
+    //         );
+    //     }
+    // }
 
     render() {
         return (
@@ -55,7 +58,7 @@ class BookDashboard extends Component {
                 <div className='title-div'>
                     <Typography variant='h6'>
                         Books<span className="img-style-dashboard">({this.props.books.length} items)</span>
-                        </Typography>
+                    </Typography>
                     <div>
                         <select className='sort' >
                             <option selected>Sort By Relevance</option>
@@ -69,6 +72,7 @@ class BookDashboard extends Component {
                     {
                         this.props.books.map((data) => {
                             return (
+                                <div>
                                 <Card className='note-card' >
                                     <Tooltip title={data.description}>
                                         <div className="image-div" >
@@ -87,10 +91,34 @@ class BookDashboard extends Component {
                                             <span className="font-size-rs">Rs.{data.price}</span>
                                         </Typography>
                                     </CardContent>
-                                    {
-                                        this.displayButton(data.bookId)
-                                    }
+                                    <CardActions>
+
+                                        {
+                                            this.props.clickedId.includes(data.BookId) ?
+                                                // <span className="card-add">
+                                                    <Button
+                                                        onClick={() => { this.props.addToCartHandler(data.BookId, data.bookCount) }}
+                                                        variant='outlined'
+                                                        color='default'
+                                                    > Added to cart</Button>:
+                                                    <div>                                                    
+                                                        <Button
+                                                        onClick={() => { this.props.addToCartHandler(data.BookId, data.bookCount) }}
+                                                        variant='outlined'
+                                                        color='default'
+                                                    > Add to cart</Button>
+                                                {/* <span className="cartWish"> */}
+                                                    <Button
+                                                        className="cartWish"
+                                                        onClick={this.props.addToWishlistClickHandler}
+                                                        variant='outlined'
+                                                        color='default'
+                                                    > Wishlist</Button>
+                                                </div>
+                                                }
+                                    </CardActions>
                                 </Card>
+                                </div>
                             );
                         })
                     }

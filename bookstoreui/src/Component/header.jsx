@@ -45,9 +45,9 @@ class Header extends Component {
               </span>
             </div>
             <div className="cart-style-header">
-              {
+              {/* {
           this.props.cart.length
-       }
+       } */}
        </div>
           </Toolbar>
         </AppBar>
