@@ -85,10 +85,6 @@ namespace Repository.RepositoryIMPL
             }
         }
 
-        public int GetNumOfBook()
-        {
-            var result = this._context.BookContext.Count<BookModel>();
-            return result;
-        }
+       
     }
 }
