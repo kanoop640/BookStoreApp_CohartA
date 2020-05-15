@@ -49,6 +49,15 @@ namespace BookStoreWebAPI.Controllers
 
             return this.Ok(result);
         }
+
+        [Route("countofbook")]
+        [HttpPost]
+        public IActionResult GetNumOfBook()
+        {
+            var result = this.bookManager.GetNumOfBook();
+
+            return this.Ok(result);
+        }
     }
 }
 
