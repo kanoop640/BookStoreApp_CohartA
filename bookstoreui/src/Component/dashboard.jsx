@@ -3,31 +3,33 @@ import BookDashboard from './bookDashboard';
 import Header from './header'
 import dragon from '../assets/dragon.jpg'
 import Footer from './footer'
-import { getBook } from '../Service/service'
+import { getBook, getAllCartItem, deleteCartItemById,addCustomerDetails} from '../Service/service'
 import OrderSummary from './orderSummary';
 import MyCarts from './myCarts'
-import {addCartItem} from '../Service/service';
+import {addCartItem} from '../Service/service'
 
 class Dashboard extends Component {
     constructor(props) {
         super();
         this.state = {
-            // bookId: '',
-            // title: '',
-            // author: '',
-            // image: '',
-            // price: '',
-            // description: '',
             result: [],
-            //cart: [],
-            //movedToCart:false,
-            //addedToCart:[],
+            cart: [],
             clickedId: [],
-            BookCount: 0,
-            cartCount: 0,
-            addToBagBtnText: "Add to Bag",
-            showMyCartComponent: false,
+            movedToCart: false,
+            addedToCart: [],
+            cartCount:0,
+            showCart:'false',
+            cartItems:[],
+            searchText:"",
+            name: "",
+            phoneNumber: 0,
+            pincode: 0,
+            locality: "",
+            city: "",
+            address: "",
+            landmark: "",
         }
+
     }
 
     func = async () => {
@@ -37,90 +39,112 @@ class Dashboard extends Component {
     }
     componentDidMount() {
         this.func();
+        this.getCartItems();
     }
 
-    // addToCart = (id) => {
-    //     if(!this.state.cart.includes(id)){
-    //         this.setState({ cart: [...this.state.cart, id] })
-    //     }
-    // }
-
-    setMoveToCart = (value) => {
-        this.setState({movedToCart: value})
-    }
     cartIconClickedHandler = () => {
-        let doesShowMyCartComponent = this.state.showMyCartComponent;
+        let showMyCart = this.state.showCart;
         this.setState({
-            showMyCartComponent: !doesShowMyCartComponent
+            showCart: !showMyCart
         })
     }
-    addToCartHandler = (clickedID,AvaliableBooks) => {
-        let cartCount = this.state.cartCount;
-        let clickedidArray = this.state.clickedId;
-        clickedidArray.push(clickedID);
-        console.log(clickedID);
-        //console.log(window.sessionStorage.getItem("email"));
-        if(!this.state.result.includes(clickedID))
-        this.setState({
-            cartCount: cartCount + 1,
-            clickedId: [...clickedidArray],
-            addToBagBtnText: "Added to bag"
-        })
-    
-        var cart = {
-            BookId: clickedID ,
-            Count: AvaliableBooks
+
+    addToCart = async (id,count) => {
+        var data = {
+            BookId: id,
+            Count: count
         }
-       const response = addCartItem(cart);
-       response.then(res=>{
-          console.log(res.data); 
-       })
+        
+        let result = await addCartItem(data)
+           this.getCartItems()
+            
+        }
+
+    search = (text) =>{
+        this.setState({searchText:text.target.value})
     }
+
+    getCartItems= async ()=>{
+        let result  = await getAllCartItem()
+        console.log(result)
+        let cart = result.map(book => book.bookId)
+        this.setState({cartItems: result, cart })
+        
+    }   
+    
+    deleteCartItems = async(cartid)=>  {
+        let deletedResult=await deleteCartItemById(cartid)
+        console.log(deletedResult)
+        this.getCartItems() 
+    }
+
+    changeCartItems = async(book,count) =>{
+        let deletedResult=await deleteCartItemById(book.cartId)
+        this.addToCart(book.bookId,count)
+    }
+
+    
+    handleSuccess=(text) => {
+        this.setState({
+            successText: text,
+        })
+    }
+
+    addCustomer =async()=>{
+        let addDetails=await addCustomerDetails()
+        console.log(addDetails)
+        const NewCustomerItem = {
+            name: this.state.name,
+            phoneNumber: this.state.phoneNumber,
+            pincode: this.state.pincode,
+            locality: this.state.locality,
+            address: this.state.address,
+            landmark:this.state.landmark,
+    };
+    addCustomerDetails(NewCustomerItem,this.handleSuccess)
+}
     render() {
-        return(
-            <div>
-            <Header
-            cartCount={this.state.cartCount}
-            cartIconClickedHandler={this.cartIconClickedHandler}
-                />
-            {
-                this.state.showMyCartComponent?
-                <myCart/>
-                :
-                <BookDashboard
-                 books={this.state.result} 
-                //  AddToCart={this.addToCart} 
-                //  cart={this.state.cart} 
-                 addToCartHandler={this.addToCartHandler}
-                 clickedId={this.state.clickedId}
-                 addToBagBtnText={this.state.addToBagBtnText}
-                 />
-            }
-            </div>
-        )
-       // console.log(this.state.movedToCart)
-        // if(this.state.movedToCart)
-        // {
+        // console.log(this.state.movedToCart)
+        // if (this.state.movedToCart) {
         //     return (
         //         <div>
-        //             <Header cart={this.state.cart} movedToCartFunc ={this.setMoveToCart}/>
-        //             <MyCarts cart={this.state.cart} books={this.state.result}/>
+        //             <Header cart={this.state.cartCount}  movedToCartFunc={this.setMoveToCart} />
+        //             <MyCarts cart={this.state.cart} books={this.state.result} />
         //             <Footer />
         //         </div>
-        //     ) 
+        //     )
         // }
-        // else{
-        // return (
-        //     <div>
-        //         <Header cart={this.state.cart}  movedToCartFunc = {this.setMoveToCart}/>
-        //         <BookDashboard books={this.state.result} AddToCart={this.addToCart} cart={this.state.cart} />
-        //         <Footer />
-        //     </div>
-        // )
-        // }
-
-
+        // else {
+            return (
+                <div>
+                    <Header
+                    cart={this.state.cart} 
+                    cartCount={this.state.cartCount}
+                    cartIconClickedHandler={this.cartIconClickedHandler}
+                    search={this.search}
+                    //movedToCartFunc={this.setMoveToCart}
+                     />
+                    {
+                        !this.state.showCart?
+                        <MyCarts 
+                        cartItems={this.state.cartItems} 
+                        deleteCartItems={this.deleteCartItems}
+                        changeCartItems={this.changeCartItems}
+                        addCustomer={this.addCustomer}
+                        />
+                        :
+                    <BookDashboard 
+                    books={this.state.result.filter((book)=> book.title.includes(this.state.searchText))} 
+                    AddToCart={this.addToCart} 
+                    cart={this.state.cart} 
+                    addToCart={this.addToCart}
+                    />
+    }
+                    <Footer />
+                </div>
+            )
+        }
 
     }
-}
+
 export default Dashboard;

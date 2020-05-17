@@ -8,16 +8,13 @@ import Button from '@material-ui/core/Button';
 import Tooltip from '@material-ui/core/Tooltip';
 
 class BookDashboard extends Component {
-    constructor(props){
-        super(props)
-    }
 
-    // constructor(props) {
-    //     super(props)
-    //     console.log(props.books)
-    //     this.state = {
-    //     }
-    //}
+    constructor(props) {
+        super(props)
+        console.log(props.cart)
+        this.state = {
+        }
+    }
     // displayButton(id) {
     //     if (this.props.cart.includes(id)) {
 
@@ -32,20 +29,20 @@ class BookDashboard extends Component {
     //         return (
 
     //             <CardActions>
-    //                 <span className="card-add">
-    //                     <Button
-    //                         onClick={() => this.props.AddToCart(id)}
-    //                         variant='outlined'
-    //                         color='default'
-    //                     > Add to cart</Button>
+    //                 <span  className="card-add">
+    //                 <Button id="MuiButton-outlined"
+    //                     onClick={() => this.props.AddToCart(id)}
+    //                     variant='outlined'
+    //                     color='default'
+    //                 > Add to cart</Button>
     //                 </span>
     //                 <span className="cartWish">
-    //                     <Button
-    //                         className="cartWish"
-    //                         onClick={() => this.props.AddToWishlist(id)}
-    //                         variant='outlined'
-    //                         color='default'
-    //                     > Wishlist</Button>
+    //                 <Button
+    //                     className="cartWish"
+    //                     onClick={()=> this.props.AddToWishlist(id)}
+    //                     variant='outlined'
+    //                     color='default'
+    //                 > Wishlist</Button>
     //                 </span>
     //             </CardActions>
     //         );
@@ -57,8 +54,8 @@ class BookDashboard extends Component {
             <div>
                 <div className='title-div'>
                     <Typography variant='h6'>
-                        Books<span className="img-style-dashboard">({this.props.books.length} items)</span>
-                    </Typography>
+                        Books<span className="font-style-dashboard">({this.props.books.length} items)</span>
+                        </Typography>
                     <div>
                         <select className='sort' >
                             <option selected>Sort By Relevance</option>
@@ -72,7 +69,6 @@ class BookDashboard extends Component {
                     {
                         this.props.books.map((data) => {
                             return (
-                                <div>
                                 <Card className='note-card' >
                                     <Tooltip title={data.description}>
                                         <div className="image-div" >
@@ -92,34 +88,38 @@ class BookDashboard extends Component {
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
-
-                                        {
-                                            this.props.clickedId.includes(data.BookId) ?
-                                                // <span className="card-add">
-                                                    <Button
-                                                        onClick={() => { this.props.addToCartHandler(data.BookId, data.bookCount) }}
-                                                        variant='outlined'
-                                                        color='default'
-                                                    > Added to cart</Button>:
-                                                    <div>                                                    
-                                                        <Button
-                                                        onClick={() => {this.props.addToCartHandler(data.BookId, data.bookCount) }}
+                                    {
+                                        this.props.cart.includes(data.bookId) ?
+                                                    <button className="add-to-cart"
+                                                    //onClick={()=>{this.props.addToCart(data.bookId)}}
+                                                    >
+                                                        Added to cart
+                                                    </button>:
+                                                     <>
+                                                    <span  className="card-add">
+                                                    <Button id="MuiButton-outlined"
+                                                        onClick={() => this.props.addToCart(data.bookId,1)}
                                                         variant='outlined'
                                                         color='default'
                                                     > Add to cart</Button>
-                                                {/* <span className="cartWish"> */}
+                                                    </span>
+                                                    <span className="cartWish">
                                                     <Button
                                                         className="cartWish"
-                                                        onClick={this.props.addToWishlistClickHandler}
+                                                        //onClick={()=> this.props.AddToWishlist(id)}
                                                         variant='outlined'
                                                         color='default'
                                                     > Wishlist</Button>
-                                                </div>
-                                                }
-                                    </CardActions>
+                                                    </span>
+                                                    </>
+                                    }
+                                                </CardActions>
+                                            );
+                                        }
+                                        this.displayButton(data.bookId)
+                                    }
                                 </Card>
-                                </div>
-                            );
+                            )
                         })
                     }
 

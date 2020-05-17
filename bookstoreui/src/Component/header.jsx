@@ -8,10 +8,11 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import InputBase from '@material-ui/core/InputBase';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import{getcountofcartitem} from '../Service/service'
 class Header extends Component {
-
   constructor(props){
     super(props)
+
   }
 
   render() {
@@ -19,7 +20,7 @@ class Header extends Component {
       <div>
         <AppBar position="static" className="MuiAppBar-colorBrown"style={styles.headerColor}>
           <Toolbar variant="dense" className="toolbar">
-            <div className="temp" id="book-icon" onClick={() => this.props.movedToCartFunc(false)}>
+            <div className="temp" id="book-icon">
               <MenuBookIcon fontSize='medium' />
               <Typography variant='h6'>
                 Book Store
@@ -28,28 +29,29 @@ class Header extends Component {
             <div className="search_box">
               <div className="searchIcon"
                 title="Search"
+                onClick={this.searchHandel}
               >
                 <SearchIcon />
               </div>
               <InputBase className="input_search"
                 type="searchIcon"
                 placeholder="Search..."
+                onChange={this.props.search}
               />
             </div>
             <div className="rightIcons">
               <FavoriteBorderOutlinedIcon fontSize='medium' />
-              <span className="cart-icon-styles" >
+              <span className="cart-icon-styles">
               <ShoppingCartOutlinedIcon fontSize='medium' 
-             // onClick={() => this.props.movedToCartFunc(true)}
-             onClick={this.props.cartIconClickedHandler}
+              onClick={this.props.cartIconClickedHandler}
+              //onClick={() => this.props.movedToCartFunc(true)}
               />
               </span>
             </div>
             <div className="cart-style-header">
-            {this.props.cartCount}
-              {/* {
+              {
           this.props.cart.length
-       } */}
+       }
        </div>
           </Toolbar>
         </AppBar>

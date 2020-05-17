@@ -1,84 +1,63 @@
-import React, { Component } from 'react';
-import { Typography, Button, RadioGroup, FormControlLabel, Radio } from '@material-ui/core';
+import React, { Component } from "react"
+import { Card, Button, Typography } from '@material-ui/core'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
-   // getCartAddedCountRequestMethod, getCartValuesRequestMethod,updateCartItem,
-import {getcountofcartitem,deleteCartItemById, getCustomerDetailsByEmailId} from '../Service/service'
-
+import IconButton from '@material-ui/core/IconButton'
+import { addCustomerDetails} from '../Service/service'
+import getAllCartItem from '../Service/service'
 class MyCarts extends Component {
-    state = {
-        cartAddedCount: 0,
-        cart: [],
-        showCustomerDetails: false,
-        showOrderSummary: false,
-        email: "",
-        name: "",
-        phoneNumber: 0,
-        pincode: 0,
-        locality: "",
-        city: "",
-        address: "",
-        landmark: "",
-        type: ""
-
+    constructor(props) {
+        super(props)
+        console.log(props.cartItems)
+        this.state = {
+            cart: [],
+            flag: false,
+            open: false,
+            addedCount: 0,
+            name: "",
+            phoneNumber: 0,
+            pincode: 0,
+            locality: "",
+            city: "",
+            address: "",
+            landmark: "",
+            type: "",
+            clicks:0,
+        }
     }
-// componentDidMount(){
-// getcountofcartitem()
-// .then(response) => {
-//                  this.setState({
-//                      cartAddedCount: response.data,
-//               });
-    
-// }
-// }
-
-    // componentDidMount() {
-    //     Promise.all([getCartAddedCountRequestMethod(), getCartValuesRequestMethod()])
-    //         .then(([cartAddedCountResult, getCartValues]) => {
-    //             this.setState({
-    //                 cartAddedCount: cartAddedCountResult.data,
-    //                 cart: getCartValues.data
-    //             })
-    //         })
-    // }
-
-    // deleteCartHandler = async (id) => {
-    //     const response = deleteCartItemById({ params: { id: id } });
-    //     await response.then(res => {
-    //         console.log(res.data)
-    //         const cartCountRes = getCartAddedCountRequestMethod();
-    //         cartCountRes.then(
-    //             res => {
-    //                 this.setState({
-    //                     cartAddedCount: res.data
-    //                 })
+    //     componentDidMount(){
+    //         getAllCartItem()
+    //         .then(respons=>{
+    //             if(response)
+    //             {
+    // this.setState({
+    //     cart:respons.data
+    // })
     //             }
-    //         )
-    //         const cartValuesRes = getCartValuesRequestMethod();
-    //         cartValuesRes.then(
-    //             res => {
-    //                 this.setState({
-    //                     cart: res.data
-    //                 })
+    //             else{
+    //                 console.log("cart failure")
     //             }
-    //         )
-    //     })
-    // }
+    //         }
 
-    placeOrderClickedHandler = () => {
-        let doesShowCustomerDetails = this.state.showCustomerDetails;
+    //         )
+    //     }
+    placeOrderHandler = () => {
+        let showCustomerDetails = this.state.open;
         this.setState({
-            showCustomerDetails: !doesShowCustomerDetails
+            open: !showCustomerDetails
         })
     }
 
-    continueClickedHandler = () => {
-        let doesShowOrderSummary = this.state.showOrderSummary;
+    handleClick = () => {
         this.setState({
-            showOrderSummary: !doesShowOrderSummary
+            flag: true
         })
     }
-
+    handleCustomerDetails = () => {
+        this.setState({
+            open: true
+        })
+    }
     nameHandler = (event) => {
         const name = event.target.value;
         console.log("name", name);
@@ -138,175 +117,147 @@ class MyCarts extends Component {
         })
     }
 
-    // addCustomerDetailsHandler = (event) => {
-    //     event.preventDefault();
-    //     const email = window.sessionStorage.getItem('email');
-    //     console.log(`email is ${email}`);
-    //     var data = {
-    //         Email: email,
-    //         FullName: this.state.name,
-    //         ContactNumber: this.state.phoneNumber,
-    //         DeliveryAddress: this.state.address,
-    //         ZipCode: this.state.pincode,
-    //         CityTown: this.state.city,
-    //         LandMark: this.state.landmark,
-    //         AddressType: this.state.type
-    //     }
-    //     console.log(data);
-    //     const response = AddCustomerDetailsRequestMethod(data);
-    //     response.then(res => {
-    //         console.log(res.data);
-    //     })
-
-
-    // }
-
+    IncrementItem = (data) => {
+        if(data.count+1>5)
+        return
+        this.props.changeCartItems(data,data.count+1)
+      }
+    decreaseItem = (data) => {
+        if(data.count==1)
+        return
+        this.props.changeCartItems(data,data.count-1)
+      }
     render() {
+        //const booksInCart = this.props.books.filter(book => this.props.cart.includes(book.bookId))
+
         return (
-            <div className='my-cart-main-div'>
-                <div className='my-cart-sub-div'>
-                    <Typography variant="h4">My cart ({this.state.cartAddedCount})</Typography>
+            <div>
+                <Card className="cartCard">
+                    <div>
+                        <Typography variant="h6">My Cart ({this.props.cartItems.length})</Typography>
+                        {
+                            
+                            this.props.cartItems.sort((a,b)=> a.bookTitle > b.bookTitle?1:-1).map((data) => {
+                                return (
 
-                    {
-                        this.state.cart.map((ele) => {
-                            return (
-                                <>
-                                    <div className='book-image-details-div'>
-                                        <div className='book-image-div'>
-                                            <img id='img-cart' src={ele.bookImage} alt='error' />
-                                        </div>
-                                        <div className='book-details-div'>
-                                            <Typography variant="h5" >{ele.bookTitle}</Typography>
-                                            <Typography>{ele.authorName}</Typography>
-                                            <Typography> {ele.bookPrice}</Typography>
-                                            <div className='item-quantity-div'>
-                                                <Button>
-                                                    <RemoveCircleOutlineIcon />
-                                                </Button>
-                                                <span id='mycart-counter'>1</span>
-                                                <Button>
-                                                    <AddCircleOutlineIcon />
-                                                </Button>
+                                    <div>
+                                        <table>
+                                            <tr className="book-details">
+                                                <td className="book-details">
+                                                    <img className="imgStyle" src={data.bookImage} />
+                                                </td>
+                                                <div>
+                                                    <td className="book-details">
+                                                        <Typography variant="h6" >{data.title}</Typography>
+                                                        <Typography>{data.authorName}</Typography>
+                                                        <Typography>Rs.{data.bookPrice}</Typography>
+                                                        <div>
+                                                        </div>
 
-                                                <Button
-                                                    variant='outlined'
-                                                    color='secondary'
-                                                    onClick={() => { this.deleteCartHandler(ele.cartID) }}
-                                                >Remove</Button>
+                                                        <IconButton
+                                                        onClick={()=>this.decreaseItem(data)}>
+                                                            <RemoveCircleOutlineIcon />
+                                                        </IconButton>
+                                                        <span>{data.count}</span>
+                                                        <IconButton
+                                                        onClick={()=>this.IncrementItem(data)}
+                                                        >
+                                                            <AddCircleOutlineIcon />
+                                                        </IconButton>
 
-                                            </div>
-                                        </div>
+                                                        <Button
+                                                            variant='outlined'
+                                                            onClick={() => this.props.deleteCartItems(data.cartId)}
+                                                        >Remove</Button>
+                                                    </td>
+                                                </div>
+
+                                            </tr>
+                                        </table>
                                     </div>
-                                </>
-                            )
-                        })
-                    }
 
-                    <div className='place-order-btn-div'>
-                        <Button
-                            variant='contained'
-                            color='primary'
-                            onClick={this.placeOrderClickedHandler}>
-                            Place order
-                    </Button>
+                                )
+                            })
+                        }
+                        <div className="placeOrder">
+                            <Button
+                            onClick={this.placeOrderHandler}>
+                            Place Order</Button>
+                        </div>
+
                     </div>
-                </div>
-                <div className='customer-details-div'>
-                    <Typography variant="h5">Customer Details</Typography>
-                    {
-                        this.state.showCustomerDetails ?
-                            <form action="" className=" p-5" name="myForm" id="f" onSubmit={this.addCustomerDetailsHandler}>
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <input type="text" placeholder='Name' id="name" className="form-control " onChange={this.nameHandler} />
-                                        </div>
+                </Card>
+                {
+                   ! this.state.open ? (
+                        <Card className="orderSummry"
+                            onClick={this.handleCustomerDetails}
+                        >
+                            Customer Details
+                        </Card>
+                    ) : (
+                            <Card className="customerDetails">
+                                <div className="outer-div">
+                                    <span className="customer-details">Customer Details</span>
+                                    <div className="div-field-styles">
+                                        <input type="text" placeholder="Name" className="field-styles"
+                                        onChange={this.nameHandler}
+                                        />
+                                        <input type="text" placeholder="Phone no." className="field-styles"
+                                        onChange={this.phoneNumberHandler} 
+                                         />
                                     </div>
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <input type="text" placeholder='Phone number' id="phoneNumber" className="form-control " onChange={this.phoneNumberHandler} />
-                                        </div>
+                                    <div className="div-field-styles">
+                                        <input type="text" placeholder="Pincode" className="field-styles" 
+                                        onChange={this.pincodeHandler}
+                                        />
+                                        <input type="text" placeholder="Locality" className="field-styles" 
+                                        onChange={this.localityHandler}/>
+                                    </div>
+                                    <div className="div-field-styles">
+                                        <input type="text" placeholder="Address" className="field-styles-address" 
+                                        onChange={this.addressHandler}/>
+                                    </div>
+                                    <div className="div-field-styles">
+                                        <input type="text" placeholder="City/Town" className="field-styles" 
+                                        onChange={this.cityHandler}/>
+                                        <input type="text" placeholder="Landmark" className="field-styles" 
+                                        onChange={this.landmarkHandler}/>
+                                    </div>
+                                    <span>Type</span>
+                                    <div className="type-div">
+                                        <label>Home</label>
+                                        <input type="radio" className="radio-styles" />
+                                        <label>Work</label>
+                                        <input type="radio" className="radio-styles" />
+                                        <label>Other</label>
+                                        <input type="radio" />
+                                    </div>
+                                    <div>
+                                        <Button id="buttonStyles"
+                                        onClick={()=>this.props.addCustomer()}
+                                        >Continue</Button>
                                     </div>
                                 </div>
+                            </Card>
+                        )
+                }
+                {
+                    !this.state.flag ? (
+                        <Card className="orderSummry"
+                            onClick={this.handleClick}
+                        >
+                            Order Summary
+                        </Card>
+                    ) : (
+                            <Card className="orderSummry">
+                                Order
+                            </Card>
+                        )
+                }
 
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <input type="text" placeholder='pincode' id="pincode" className="form-control " onChange={this.pincodeHandler} />
-                                        </div>
-                                    </div>
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <input type="text" placeholder='locality' id="locality" className="form-control " onChange={this.localityHandler} />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="row">
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <input type="text" placeholder='city/town' id="city" className="form-control " onChange={this.cityHandler} />
-                                        </div>
-                                    </div>
-                                    <div className="col">
-                                        <div className="form-group">
-                                            <input type="text" placeholder='landmark' id="landmark" className="form-control " onChange={this.landmarkHandler} />
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="form-group">
-                                    <input type="text" placeholder='address' id="address" className="form-control " onChange={this.addressHandler} />
-
-                                </div>
-                                <div className='form-group'>
-                                    <label>type</label>
-                                </div>
-                                <div class="form-group form-check" id='check-box-div'>
-                                    <RadioGroup row aria-label="position" name="position" defaultValue="top">
-                                        <FormControlLabel value="home" control={<Radio color="primary" />} label="Home" onChange={this.typeHandler} />
-                                        <FormControlLabel value="work" control={<Radio color="primary" />} label="Work" onChange={this.typeHandler} />
-                                        <FormControlLabel value="other" control={<Radio color="primary" />} label="Other" onChange={this.typeHandler} />
-                                    </RadioGroup>
-                                </div>
-                                <div className='form-group'>
-                                    <button type="submit" id="continue" className="btn btn-primary">Continue</button>
-                                </div>
-                            </form> : null
-                    }
-                </div>
-                <div className='order-summary-div'>
-                    <Typography variant="h5">Order summary</Typography>
-                    {
-                        this.state.showOrderSummary ?
-                        this.state.cart.map((ele) => {
-                            return (
-                                <>
-                                    <div className='book-image-details-div'>
-                                        <div className='book-image-div'>
-                                            <img id='img-cart' src={ele.bookImage} alt='error' />
-                                        </div>
-                                        <div className='book-details-div'>
-                                            <Typography variant="h5" >{ele.bookTitle}</Typography>
-                                            <Typography>{ele.authorName}</Typography>
-                                            <Typography>₹ {ele.bookPrice}</Typography>
-                                        </div>
-                                    </div>
-                                </>
-                            )
-                        }) : null
-                        
-                    }
-                    <div className='place-order-btn-div'>
-                        <Button
-                            variant='contained'
-                            color='primary'>
-                            checkout
-                    </Button>
-                    </div>
-                </div>
             </div>
         )
     }
 }
+
 export default MyCarts;

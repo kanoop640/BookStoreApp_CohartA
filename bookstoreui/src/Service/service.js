@@ -17,16 +17,8 @@ export async function getBook(){
 //no-arg paramter
 //returns array of cart items(used join in backend)
 export async function getAllCartItem(){
-    try{
-        axios.get("https://localhost:44381/api/Cart/getcartcontext")
-        .then(response => {
-            return response
-        })
-    }
-    catch(error){
-        console.log("error while fetching all cart items" + error)
-        return Promise.resolve(false)
-    }
+       const result = await axios.get("https://localhost:44381/api/Cart/getcartcontext")
+       return result.data
 }
 
 //parameter-> CartModel obj
@@ -66,17 +58,10 @@ export async function updateCartItem(updateCartItem) {
 
 //parameter CartId string type
 export async function deleteCartItemById(cartid) {
-    try {
-        return axios.delete("https://localhost:44381/api/Book/deletecartmodel?cartid=${cartid}")
-            .then(response => {
-                return response
-            })
-    }
-    catch (error) {
-        console.log("error while deleting cartitem" + error)
-        return Promise.resolve(false)
-    }
-}
+        const result=await axios.delete("https://localhost:44381/api/Cart/deletecartmodel?id="+cartid)
+            return result.data
+        }
+
 
 export async function getcountofcartitem(){
     try{
@@ -112,13 +97,14 @@ export async function getCustomerDetailsByEmailId(EmailId) {
     }
 }
 
+
 //parameter -> one new CustomerModel obj
-export async function addCustomerDetails(NewCustomerItem) {
+export async function addCustomerDetails(user) {
     try {
         var headers= {
             'Content-Type': 'application/json'
         };
-        return await axios.post("https://localhost:44381/api/CustomerDetails/addaddress", NewCustomerItem,{headers:headers} )
+        return await axios.post("https://localhost:44381/api/CustomerDetails/addaddress", user,{headers:headers} )
             .then(response => { 
                 return response
             })
