@@ -28,6 +28,6 @@ namespace Repository.IRepository
 
         string Image(IFormFile file, int id);
 
-        int GetNumOfBook();
+        
     }
 }

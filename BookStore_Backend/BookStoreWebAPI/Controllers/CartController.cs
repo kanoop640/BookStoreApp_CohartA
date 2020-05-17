@@ -60,7 +60,16 @@ namespace BookStoreWebAPI.Controllers
             var result = await this._cartManager.DeleteCartModel(id);
             return result;
         }
-      
+
+        [Route("countofbook")]
+        [HttpGet]
+        public IActionResult GetNumOfBook()
+        {
+            var result = this._cartManager.GetNumOfBook();
+
+            return this.Ok(result);
+        }
+
     }
 }
 

@@ -31,9 +31,6 @@ namespace Manager.ManagerIMPL
             return this._bookRepository.Image(file,id);
         }
 
-        public int GetNumOfBook()
-        {
-            return this._bookRepository.GetNumOfBook();
-        }
+       
     }
 }
