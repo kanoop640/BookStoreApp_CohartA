@@ -4,7 +4,111 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import HomeIcon from '@material-ui/icons/Home';
-class Mycart extends Component {
+class mycarts extends Component {
+    constructor(props) {
+        super(props)
+        console.log(props.cartItems)
+        this.state = {
+            cart: [],
+            flag: false,
+            open: false,
+            addedCount: 0,
+            Name: "",
+            PhoneNumber: 0,
+            Pincode: 0,
+            Locality: "",
+            City: "",
+            Address: "",
+            Landmark: "",
+            type: "",
+            clicks:0,
+        }
+    }
+    placeOrderHandler = () => {
+        let showCustomerDetails = this.state.open;
+        this.setState({
+            open: !showCustomerDetails
+        })
+    }
+
+    handleClick = () => {
+        this.setState({
+            flag: true
+        })
+    }
+    handleCustomerDetails = () => {
+        this.setState({
+            open: true
+        })
+    }
+    nameHandler = (event) => {
+        const Name = event.target.value;
+        console.log("name", Name);
+        this.setState({
+            Name: Name,
+        })
+    }
+    phoneNumberHandler = (event) => {
+        const PhoneNumber = event.target.value;
+        console.log('phoneNumber', PhoneNumber)
+        this.setState({
+            PhoneNumber: PhoneNumber
+        })
+    }
+
+    pincodeHandler = (event) => {
+        const Pincode = event.target.value;
+        console.log("pincode", Pincode);
+        this.setState({
+            Pincode: Pincode
+        })
+    }
+    localityHandler = (event) => {
+        const Locality = event.target.value;
+        console.log('locality', Locality)
+        this.setState({
+            Locality: Locality
+        })
+    }
+
+    cityHandler = (event) => {
+        const City = event.target.value;
+        console.log("city", City);
+        this.setState({
+            City: City,
+        })
+    }
+    addressHandler = (event) => {
+        const Address = event.target.value;
+        console.log('address', Address)
+        this.setState({
+            Address: Address
+        })
+    }
+    landmarkHandler = (event) => {
+        const Landmark = event.target.value;
+        console.log("landmark", Landmark);
+        this.setState({
+            Landmark: Landmark,
+        })
+    }
+    typeHandler = (event) => {
+        const type = event.target.value;
+        console.log('type', type)
+        this.setState({
+            type: type
+        })
+    }
+    IncrementItem = (data) => {
+        if(data.count+1>5)
+        return
+        this.props.changeCartItems(data,data.count+1)
+      }
+    decreaseItem = (data) => {
+        if(data.count==1)
+        return
+        this.props.changeCartItems(data,data.count-1)
+      }
 
     render() {
 
@@ -96,7 +200,7 @@ class Mycart extends Component {
     }
 }
 
-export default Mycart;
+export default mycarts;
 
 
 
