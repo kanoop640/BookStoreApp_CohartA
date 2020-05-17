@@ -99,20 +99,38 @@ export async function getCustomerDetailsByEmailId(EmailId) {
 
 
 //parameter -> one new CustomerModel obj
-export async function addCustomerDetails(user) {
-    try {
-        var headers= {
-            'Content-Type': 'application/json'
-        };
-        return await axios.post("https://localhost:44381/api/CustomerDetails/addaddress", user,{headers:headers} )
-            .then(response => { 
-                return response
-            })
-    }
-    catch (error) {
-        console.log("error while adding new customer's address details " + error)
-        return Promise.resolve(false)
-    }
+export async function addCustomerDetails(NewCustomerItem, handleSuccess) {
+    // try {
+    //     var headers= {
+    //         'Content-Type': 'application/json'
+    //     };
+    //     return await axios.post("https://localhost:44381/api/CustomerDetails/addaddress", NewCustomerItem,{headers:headers} )
+    //         .then(response => { 
+    //             return response
+    //         })
+    // }
+    // catch (error) {
+    //     console.log("error while adding new customer's address details " + error)
+    //     return Promise.resolve(false)
+    // }
+    console.log(NewCustomerItem)
+    axios.post("https://localhost:44381/api/CustomerDetails/addaddress", {
+        Name: NewCustomerItem.Name,
+        PhoneNumber: NewCustomerItem.PhoneNumber,
+        Pincode: NewCustomerItem.Pincode,
+        Locality: NewCustomerItem.Locality,
+        Address: NewCustomerItem.Address,
+        Landmark:NewCustomerItem.Landmark,
+})
+.then(res=>{
+    console.log(res);
+    console.log(res.data);
+    handleSuccess('Successful');
+})
+.catch(error => {
+    console.log(error);
+    handleSuccess('Something went wrong :( Plz try again.');
+});
 }
 
 //end of customeraddressdetails

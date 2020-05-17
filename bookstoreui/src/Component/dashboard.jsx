@@ -21,13 +21,13 @@ class Dashboard extends Component {
             showCart:'false',
             cartItems:[],
             searchText:"",
-            name: "",
-            phoneNumber: 0,
-            pincode: 0,
-            locality: "",
-            city: "",
-            address: "",
-            landmark: "",
+            Name: "",
+            PhoneNumber: 0,
+            Pincode: 0,
+            Locality: "",
+            City: "",
+            Address: "",
+            Landmark: "",
         }
 
     }
@@ -94,12 +94,12 @@ class Dashboard extends Component {
         let addDetails=await addCustomerDetails()
         console.log(addDetails)
         const NewCustomerItem = {
-            name: this.state.name,
-            phoneNumber: this.state.phoneNumber,
-            pincode: this.state.pincode,
-            locality: this.state.locality,
-            address: this.state.address,
-            landmark:this.state.landmark,
+            Name: this.state.Name,
+            PhoneNumber: this.state.PhoneNumber,
+            Pincode: this.state.Pincode,
+            Locality: this.state.Locality,
+            Address: this.state.Address,
+            Landmark:this.state.Landmark,
     };
     addCustomerDetails(NewCustomerItem,this.handleSuccess)
 }

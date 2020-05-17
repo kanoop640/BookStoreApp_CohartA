@@ -14,13 +14,13 @@ class MyCarts extends Component {
             flag: false,
             open: false,
             addedCount: 0,
-            name: "",
-            phoneNumber: 0,
-            pincode: 0,
-            locality: "",
-            city: "",
-            address: "",
-            landmark: "",
+            Name: "",
+            PhoneNumber: 0,
+            Pincode: 0,
+            Locality: "",
+            City: "",
+            Address: "",
+            Landmark: "",
             type: "",
             clicks:0,
         }
@@ -59,54 +59,54 @@ class MyCarts extends Component {
         })
     }
     nameHandler = (event) => {
-        const name = event.target.value;
-        console.log("name", name);
+        const Name = event.target.value;
+        console.log("name", Name);
         this.setState({
-            name: name,
+            Name: Name,
         })
     }
     phoneNumberHandler = (event) => {
-        const phoneNumber = event.target.value;
-        console.log('phoneNumber', phoneNumber)
+        const PhoneNumber = event.target.value;
+        console.log('phoneNumber', PhoneNumber)
         this.setState({
-            phoneNumber: phoneNumber
+            PhoneNumber: PhoneNumber
         })
     }
 
     pincodeHandler = (event) => {
-        const pincode = event.target.value;
-        console.log("pincode", pincode);
+        const Pincode = event.target.value;
+        console.log("pincode", Pincode);
         this.setState({
-            pincode: pincode
+            Pincode: Pincode
         })
     }
     localityHandler = (event) => {
-        const locality = event.target.value;
-        console.log('locality', locality)
+        const Locality = event.target.value;
+        console.log('locality', Locality)
         this.setState({
-            locality: locality
+            Locality: Locality
         })
     }
 
     cityHandler = (event) => {
-        const city = event.target.value;
-        console.log("city", city);
+        const City = event.target.value;
+        console.log("city", City);
         this.setState({
-            city: city,
+            City: City,
         })
     }
     addressHandler = (event) => {
-        const address = event.target.value;
-        console.log('address', address)
+        const Address = event.target.value;
+        console.log('address', Address)
         this.setState({
-            address: address
+            Address: Address
         })
     }
     landmarkHandler = (event) => {
-        const landmark = event.target.value;
-        console.log("landmark", landmark);
+        const Landmark = event.target.value;
+        console.log("landmark", Landmark);
         this.setState({
-            landmark: landmark,
+            Landmark: Landmark,
         })
     }
     typeHandler = (event) => {
@@ -234,7 +234,7 @@ class MyCarts extends Component {
                                     </div>
                                     <div>
                                         <Button id="buttonStyles"
-                                        onClick={()=>this.props.addCustomer()}
+                                        onSubmit={()=>this.props.addCustomer()}
                                         >Continue</Button>
                                     </div>
                                 </div>
