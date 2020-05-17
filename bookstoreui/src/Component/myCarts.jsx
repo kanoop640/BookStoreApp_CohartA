@@ -34,9 +34,7 @@ class MyCarts extends Component {
     }
 
     handleClick = () => {
-        this.setState({
-            flag: true
-        })
+        // this.props.history.push('/orderSummary');
     }
     handleCustomerDetails = () => {
         this.setState({
@@ -257,21 +255,18 @@ class MyCarts extends Component {
                             </Card>
                         )
                 }
-                {
-                    !this.state.flag ? (
                         <Card className="orderSummry"
                             onClick={this.handleClick}
                         >
                             Order Summary
                             {this.state.orderId}
                         </Card>
-                    ) : (
-                            <Card className="orderSummry">
-                                Order
+                            {/* <Card className="orderSummry">
+                                Order Id
+                                <div>
                                 {this.state.orderId}
-                            </Card>
-                        )
-                }
+                                </div>
+                            </Card> */}
 
             </div>
         )

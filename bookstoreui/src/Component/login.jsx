@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Typography } from '@material-ui/core';
 import { LoginRequestMethod } from '../Service/service'
-import {TextField} from '@material-ui/core'
+import {TextField,Grid,Button} from '@material-ui/core'
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -57,13 +57,23 @@ class Login extends Component {
 
     return (
       <>
+       {
+                    <Grid
+                        container
+                        spacing={0}
+                        direction="column"
+                        alignItems="center"
+                        justify="center"
+                        style={{ minHeight: '100vh' }}
+                    >
         <Typography variant='h5' id='welcome-text'>Welcome to Book Store</Typography>
         <form className=" container p-5 bg-light text-primary mx-auto" id='form' onSubmit={this.submitHandler} >
           <div className="form-group">
-            <h1 className='display-3 text-dark'>Login</h1>
+            <h2 className='heading'>User Login</h2>
           </div>
           <div className="form-group">
             <TextField
+            className="textfields"
                                 id="outlined-basic"
                                 label="email"
                                 variant="standard"
@@ -74,15 +84,15 @@ class Login extends Component {
            {/* </TextField> <input type="text" id="email" className="form-control " onChange={this.emailHandler} /> */}
            </TextField>
 
-          </div>
+          </div><div className="textfield">
                             <TextField
-                                id="outlined-basic"
                                 label="Password"
                                 variant="standard"
                                 type="password"
                                 onChange={this.passwordHandler}
                             >
                             </TextField>
+                            </div>
 
           {/* <div className="form-group">
             <label for="password">Password :</label>
@@ -95,9 +105,11 @@ class Login extends Component {
           <div className="form-group text-secondary">
             Don't have an account ? register
           </div>
-          <button type="submit" className="btn btn-success" id="submitBtn" >Login</button>
+          <div id="loginButton"><Button type="submit" style={{color:"white"}} >Login</Button></div>
           
         </form>
+        </Grid>
+  }
       </>
     )
   }

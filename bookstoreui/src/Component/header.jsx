@@ -18,7 +18,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <AppBar position="static" className="MuiAppBar-colorBrown"style={styles.headerColor}>
+        <AppBar position="static" className="MuiAppBar-colorBrown"id="headerColor">
           <Toolbar variant="dense" className="toolbar">
             <div className="temp" id="book-icon">
               <MenuBookIcon fontSize='medium' />
@@ -41,13 +41,13 @@ class Header extends Component {
             </div>
             <div className="rightIcons">
               <FavoriteBorderOutlinedIcon fontSize='medium' />
-              <span className="cart-icon-styles">
+              </div>
+              <div className="cart-icon-styles">
               <ShoppingCartOutlinedIcon fontSize='medium' 
               onClick={this.props.cartIconClickedHandler}
               //onClick={() => this.props.movedToCartFunc(true)}
               />
-              </span>
-            </div>
+              </div>
             <div className="cart-style-header">
               {
           this.props.cart.length
@@ -59,10 +59,5 @@ class Header extends Component {
     )
   }
 
-}
-const styles = {
-  headerColor: {
-    backgroundColor: 'Brown',
-  }
 }
 export default Header
