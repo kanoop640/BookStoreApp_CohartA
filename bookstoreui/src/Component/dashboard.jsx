@@ -3,7 +3,7 @@ import BookDashboard from './bookDashboard';
 import Header from './header'
 import dragon from '../assets/dragon.jpg'
 import Footer from './footer'
-import { getBook, getAllCartItem, deleteCartItemById,addCustomerDetails} from '../Service/service'
+import { getBook, getAllCartItem, deleteCartItemById,addCustomerDetails,getcountofcartitem} from '../Service/service'
 import OrderSummary from './orderSummary';
 import MyCarts from './myCarts'
 import {addCartItem} from '../Service/service'
@@ -28,8 +28,15 @@ class Dashboard extends Component {
             City: "",
             Address: "",
             Landmark: "",
+            totalBook:[],
+            addedCount:0
         }
 
+    }
+
+    getBookCount = async () =>{
+        let count = await getcountofcartitem()
+        this.setState({addedCount:count})
     }
 
     func = async () => {
@@ -40,6 +47,7 @@ class Dashboard extends Component {
     componentDidMount() {
         this.func();
         this.getCartItems();
+        this.getBookCount()
     }
 
     cartIconClickedHandler = () => {
@@ -65,6 +73,7 @@ class Dashboard extends Component {
     }
 
     getCartItems= async ()=>{
+        this.getBookCount()
         let result  = await getAllCartItem()
         console.log(result)
         let cart = result.map(book => book.bookId)
@@ -84,39 +93,27 @@ class Dashboard extends Component {
     }
 
     
-    handleSuccess=(text) => {
-        this.setState({
-            successText: text,
-        })
-    }
-
-    addCustomer =async()=>{
-        let addDetails=await addCustomerDetails()
-        console.log(addDetails)
+    addCustomer =async(Name,PhoneNumber,Pincode,Locality,Address,Landmark,City)=>{
+       // let addDetails=await addCustomerDetails()
+       console.log(City)
         const NewCustomerItem = {
-            Name: this.state.Name,
-            PhoneNumber: this.state.PhoneNumber,
-            Pincode: this.state.Pincode,
-            Locality: this.state.Locality,
-            Address: this.state.Address,
-            Landmark:this.state.Landmark,
+            Email: sessionStorage.getItem("Email"),
+            Name: Name,
+            PhoneNumber:PhoneNumber,
+            PinCode: Pincode,
+            Locality:Locality,
+            Address:Address,
+            City: City,
+            LandMark:Landmark
+            
     };
-    addCustomerDetails(NewCustomerItem,this.handleSuccess)
+    addCustomerDetails(NewCustomerItem)
 }
     render() {
-        // console.log(this.state.movedToCart)
-        // if (this.state.movedToCart) {
-        //     return (
-        //         <div>
-        //             <Header cart={this.state.cartCount}  movedToCartFunc={this.setMoveToCart} />
-        //             <MyCarts cart={this.state.cart} books={this.state.result} />
-        //             <Footer />
-        //         </div>
-        //     )
-        // }
-        // else {
+
             return (
                 <div>
+                    <div id="main">
                     <Header
                     cart={this.state.cart} 
                     cartCount={this.state.cartCount}
@@ -127,9 +124,12 @@ class Dashboard extends Component {
                     {
                         !this.state.showCart?
                         <MyCarts 
+                        totalBook={this.totalBook}
+                        countCartBook={this.countCartBook}
                         cartItems={this.state.cartItems} 
                         deleteCartItems={this.deleteCartItems}
                         changeCartItems={this.changeCartItems}
+                        addedCount = { this.state.addedCount}
                         addCustomer={this.addCustomer}
                         />
                         :
@@ -140,8 +140,12 @@ class Dashboard extends Component {
                     addToCart={this.addToCart}
                     />
     }
-                    <Footer />
+                    
                 </div>
+                <div id="footer-container">
+                    <Footer />
+                    </div>
+                    </div>
             )
         }
 

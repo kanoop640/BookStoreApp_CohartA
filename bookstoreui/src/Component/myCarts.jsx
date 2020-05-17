@@ -3,7 +3,7 @@ import { Card, Button, Typography } from '@material-ui/core'
 import AddCircleOutlineIcon from '@material-ui/icons/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@material-ui/icons/RemoveCircleOutline';
 import IconButton from '@material-ui/core/IconButton'
-import { addCustomerDetails} from '../Service/service'
+import { addCustomerDetails, getcountofcartitem} from '../Service/service'
 import getAllCartItem from '../Service/service'
 class MyCarts extends Component {
     constructor(props) {
@@ -13,34 +13,19 @@ class MyCarts extends Component {
             cart: [],
             flag: false,
             open: false,
-            addedCount: 0,
             Name: "",
             PhoneNumber: 0,
             Pincode: 0,
             Locality: "",
             City: "",
             Address: "",
-            Landmark: "",
-            type: "",
+            LandMark: "",
+            Type: "",
             clicks:0,
+            orderId:0,
         }
     }
-    //     componentDidMount(){
-    //         getAllCartItem()
-    //         .then(respons=>{
-    //             if(response)
-    //             {
-    // this.setState({
-    //     cart:respons.data
-    // })
-    //             }
-    //             else{
-    //                 console.log("cart failure")
-    //             }
-    //         }
 
-    //         )
-    //     }
     placeOrderHandler = () => {
         let showCustomerDetails = this.state.open;
         this.setState({
@@ -106,14 +91,14 @@ class MyCarts extends Component {
         const Landmark = event.target.value;
         console.log("landmark", Landmark);
         this.setState({
-            Landmark: Landmark,
+            LandMark: Landmark,
         })
     }
     typeHandler = (event) => {
-        const type = event.target.value;
-        console.log('type', type)
+        const Type = event.target.value;
+        console.log('type', Type)
         this.setState({
-            type: type
+            Type: Type
         })
     }
 
@@ -121,20 +106,41 @@ class MyCarts extends Component {
         if(data.count+1>5)
         return
         this.props.changeCartItems(data,data.count+1)
+        this.getBookCount()
       }
     decreaseItem = (data) => {
         if(data.count==1)
         return
         this.props.changeCartItems(data,data.count-1)
+        this.getBookCount()
       }
+
+      addCustomer =async(Name,PhoneNumber,Pincode,Locality,Address,LandMark,City)=>{
+        
+         const NewCustomerItem = {
+             Email: sessionStorage.getItem("Email"),
+             Name: Name,
+             PhoneNumber:PhoneNumber,
+             PinCode: Pincode,
+             Locality:Locality,
+             Address:Address,
+             City: City,
+             LandMark:LandMark
+             
+     };
+     let orderId = await addCustomerDetails(NewCustomerItem)
+     orderId = new Date().getTime()
+     
+     this.setState({orderId: orderId})
+ }
+
     render() {
         //const booksInCart = this.props.books.filter(book => this.props.cart.includes(book.bookId))
-
         return (
             <div>
                 <Card className="cartCard">
                     <div>
-                        <Typography variant="h6">My Cart ({this.props.cartItems.length})</Typography>
+                        <Typography variant="h6">My Cart ({this.props.addedCount})</Typography>
                         {
                             
                             this.props.cartItems.sort((a,b)=> a.bookTitle > b.bookTitle?1:-1).map((data) => {
@@ -148,7 +154,7 @@ class MyCarts extends Component {
                                                 </td>
                                                 <div>
                                                     <td className="book-details">
-                                                        <Typography variant="h6" >{data.title}</Typography>
+                                                        <Typography variant="h6" >{data.bookTitle}</Typography>
                                                         <Typography>{data.authorName}</Typography>
                                                         <Typography>Rs.{data.bookPrice}</Typography>
                                                         <div>
@@ -167,7 +173,8 @@ class MyCarts extends Component {
 
                                                         <Button
                                                             variant='outlined'
-                                                            onClick={() => this.props.deleteCartItems(data.cartId)}
+                                                            onClick={() => {
+                                                                this.props.deleteCartItems(data.cartId)}}
                                                         >Remove</Button>
                                                     </td>
                                                 </div>
@@ -179,11 +186,16 @@ class MyCarts extends Component {
                                 )
                             })
                         }
-                        <div className="placeOrder">
-                            <Button
+                        {
+                            this.props.addedCount>0?(
+                                <div className="placeOrder">
+                            <Button id="placeOrder"
                             onClick={this.placeOrderHandler}>
                             Place Order</Button>
                         </div>
+                            ):(<div></div>)
+                        }
+                        
 
                     </div>
                 </Card>
@@ -233,9 +245,13 @@ class MyCarts extends Component {
                                         <input type="radio" />
                                     </div>
                                     <div>
+                                    {
+                            this.props.addedCount>0?(
                                         <Button id="buttonStyles"
-                                        onSubmit={()=>this.props.addCustomer()}
+                                        onClick={()=>this.addCustomer(this.state.Name,this.state.PhoneNumber,this.state.Pincode,this.state.Locality,this.state.Address,this.state.LandMark, this.state.City)}
                                         >Continue</Button>
+                                        ):(<div></div>)
+                                    }
                                     </div>
                                 </div>
                             </Card>
@@ -247,10 +263,12 @@ class MyCarts extends Component {
                             onClick={this.handleClick}
                         >
                             Order Summary
+                            {this.state.orderId}
                         </Card>
                     ) : (
                             <Card className="orderSummry">
                                 Order
+                                {this.state.orderId}
                             </Card>
                         )
                 }

@@ -1,118 +1,105 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom';
-import { Card, TextField, Button, Checkbox, Grid, Link } from '@material-ui/core'
-import axios from 'axios';
+import React, { Component } from 'react';
+import { Typography } from '@material-ui/core';
+import { LoginRequestMethod } from '../Service/service'
+import {TextField} from '@material-ui/core'
+class Login extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      email: "",
+      password: "",
+      loginAuthentication: false,
+      showError: false
+    }
+  }
 
-export class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: '',
-            password: '',
-            error:false,
-            errorText: '',
-        }
+  emailHandler = (event) => {
+    const email = event.target.value;
+    console.log("Email", email);
+    this.setState({
+      email: email,
+    })
+  }
+  passwordHandler = (event) => {
+    const password = event.target.value;
+    console.log('Password', password)
+    this.setState({
+      password: password
+    })
+  }
+
+  submitHandler = (event) => {
+    event.preventDefault();
+    var data = {
+      Email: this.state.email,
+      Password: this.state.password
     }
-    componentDidMount() {
-        document.body.style.backgroundImage = `url('/static/media/img.e0ef5ef0.png')`;
-        document.body.style.backgroundRepeat = 'no-repeat'
-        document.body.style.backgroundSize = 'cover'
-    }
-    handleEmailChange = (event) => {
-        const email = event.target.value;
+    sessionStorage.setItem("Email",this.state.email);
+    const response = LoginRequestMethod(data);
+    response.then(res => {
+      console.log(res.data);
+      if (res.data === true) {
         this.setState({
-            email: email
+          loginAuthentication: true
         })
-        console.log("email", this.state.email)
-    }
-    handlePasswordChange = (event) => {
-        const email = event.target.value;
-        this.setState({
-            password: email
-        })
-        console.log("password", this.state.value)
-    }
+        this.props.history.push('/Dashboard');
+      }
+      else {
+        alert("email or password is incorrect");
+      this.setState({
+        showError: true
+      })
+      }
+    })
+  }
 
-    handleLogin = () => {
+  render() {
 
-        var data = {
-            email: this.state.email,
-            password:this.state.password
-        };
-
-        axios.post(``, { email: data.email, password: data.password})
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
-                if(res.data===data.email)
-                {
-                this.setState({
-                    loginAuthentication: true
-                  })
-                }
-              this.props.history.push('/Dashboard');
-        
-              }).catch(()=>{
-                  this.setState({
-                      error:true, errorText:'Authenticiation failed.'
-                  })
-              })
-    }
-    render() {
-        return (
-            <div className="login_container">
-
-                {
-                    <Grid
-                        container
-                        spacing={0}
-                        direction="column"
-                        alignItems="center"
-                        justify="center"
-                        style={{ minHeight: '100vh' }}
-                    >
-                        <Card className="loginCard"  >
-                            <div >
-                                <h2>Login</h2>
-                            </div>
-                            <TextField
+    return (
+      <>
+        <Typography variant='h5' id='welcome-text'>Welcome to Book Store</Typography>
+        <form className=" container p-5 bg-light text-primary mx-auto" id='form' onSubmit={this.submitHandler} >
+          <div className="form-group">
+            <h1 className='display-3 text-dark'>Login</h1>
+          </div>
+          <div className="form-group">
+            <TextField
                                 id="outlined-basic"
                                 label="email"
                                 variant="standard"
                                 type="email"
                                 color="#000000"
-                                onChange={this.handleEmailChange}
+                                onChange={this.emailHandler}
                             >
-                            </TextField>
+           {/* </TextField> <input type="text" id="email" className="form-control " onChange={this.emailHandler} /> */}
+           </TextField>
+
+          </div>
                             <TextField
                                 id="outlined-basic"
                                 label="Password"
                                 variant="standard"
                                 type="password"
-                                onChange={this.handlePasswordChange}
+                                onChange={this.passwordHandler}
                             >
                             </TextField>
-                            <p className="errorTextStyle">
-                                {this.state.errorText}
-                            </p>
-                            <Grid className="login-bton">
-                                <Button id="Btn" variant="contained" color="Primary" onClick={() => { this.handleLogin() }}>login</Button>
-                            </Grid>
-                            <Grid className="sign-up">
-                                Don't have an account  <a href="/Registration"><span className="signup-color"> Sign Up</span></a>
-                            </Grid>
-                        </Card>
-                    </Grid>
-                }
-            </div>
-        )
-    }
-}
 
-const styles = {
-    errorTextStyle : {
-        alignItems : 'center',
-        color: 'red',
-    }
+          {/* <div className="form-group">
+            <label for="password">Password :</label>
+            <input type="password" id="password" className="form-control " onChange={this.passwordHandler} />
+          </div> */}
+          {
+            this.state.showError ? <div className="form-group text-danger" id="error">Email or Password is incorrect </div> : null
+          }
+
+          <div className="form-group text-secondary">
+            Don't have an account ? register
+          </div>
+          <button type="submit" className="btn btn-success" id="submitBtn" >Login</button>
+          
+        </form>
+      </>
+    )
+  }
 }
-export default withRouter(Login)
+export default Login  

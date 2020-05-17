@@ -1,4 +1,5 @@
 import axios from 'axios';
+const url="https://localhost:44381/api/Login/login";
 
 //bookcontext
 //no-arg parameter
@@ -6,11 +7,6 @@ import axios from 'axios';
 export async function getBook(){
     const res = await axios.get('https://localhost:44381/api/Book/getallbook')
     return res.data
-    // .then(res=>{
-    //     const book=res.data;
-    //     console.log(book)
-    //     return book;
-    // })
 }
 
 //cartcontext
@@ -65,15 +61,14 @@ export async function deleteCartItemById(cartid) {
 
 export async function getcountofcartitem(){
     try{
-        axios.get("https://localhost:44381/api/Cart/countofbook")
-        .then(response => {
-            return response
-        })
+    const result = await axios.get("https://localhost:44381/api/Cart/countofbook")
+    return result.data
     }
-    catch(error){
-        console.log("error while fetching all Employee Details" + error)
-        return Promise.resolve(false)
+    catch(error)
+    {
+        return 0
     }
+    
  }
 
 //end of cartcontext
@@ -99,57 +94,26 @@ export async function getCustomerDetailsByEmailId(EmailId) {
 
 
 //parameter -> one new CustomerModel obj
-export async function addCustomerDetails(NewCustomerItem, handleSuccess) {
-    // try {
-    //     var headers= {
-    //         'Content-Type': 'application/json'
-    //     };
-    //     return await axios.post("https://localhost:44381/api/CustomerDetails/addaddress", NewCustomerItem,{headers:headers} )
-    //         .then(response => { 
-    //             return response
-    //         })
-    // }
-    // catch (error) {
-    //     console.log("error while adding new customer's address details " + error)
-    //     return Promise.resolve(false)
-    // }
+export async function addCustomerDetails(NewCustomerItem) {
     console.log(NewCustomerItem)
-    axios.post("https://localhost:44381/api/CustomerDetails/addaddress", {
-        Name: NewCustomerItem.Name,
-        PhoneNumber: NewCustomerItem.PhoneNumber,
-        Pincode: NewCustomerItem.Pincode,
-        Locality: NewCustomerItem.Locality,
-        Address: NewCustomerItem.Address,
-        Landmark:NewCustomerItem.Landmark,
-})
-.then(res=>{
-    console.log(res);
-    console.log(res.data);
-    handleSuccess('Successful');
-})
-.catch(error => {
-    console.log(error);
-    handleSuccess('Something went wrong :( Plz try again.');
-});
+    var headers= {
+        'Content-Type': 'application/json-patch+json'
+    };
+    let object = JSON.stringify(NewCustomerItem)
+    try{
+    let orderId = await axios.post("https://localhost:44381/api/CustomerDetails/addaddress", object,{headers} )
+    return orderId    
 }
-
+    catch(error){
+        return -1
+    }
+}
+ 
 //end of customeraddressdetails
 
+const loginURL='https://localhost:44381/api/Login/login';
 
-//logincontext
-//parameter -> login object with id and pass
-export async function login(loginobject) {
-    try {
-        var headers= {
-            'Content-Type': 'application/json'
-        };
-        return await axios.post("https://localhost:44381/api/Login/login", loginobject,{headers:headers} )
-            .then(response => { 
-                return response
-            })
-    }
-    catch (error) {
-        console.log("error while login enter valid email and password" + error)
-        return Promise.resolve(false)
-    }
+export const LoginRequestMethod = async (data)=>{
+    const response = await axios.post(loginURL,data);
+    return response;
 }
