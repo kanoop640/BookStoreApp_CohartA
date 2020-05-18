@@ -1,0 +1,16 @@
+export const books = [
+  { id: 1, title: "test", date: "", price: "10", author: "anoop" },
+  { id: 2, title: "test", date: "", price: "20", author: "ashok" },
+  { id: 3, title: "test", date: "", price: "25", author: "ram" },
+  { id: 4, title: "test", date: "", price: "100", author: "vipin" },
+  { id: 5, title: "test", date: "", price: "15", author: "kumar" },
+  { id: 6, title: "test", date: "", price: "70", author: "david" },
+  { id: 7, title: "test", date: "", price: "50", author: "luthor" },
+  { id: 8, title: "test", date: "", price: "55", author: "surya" },
+  { id: 9, title: "test", date: "", price: "57", author: "shiv" },
+  { id: 10, title: "test", date: "", price: "115", author: "sharan" },
+  { id: 11, title: "test", date: "", price: "120", author: "lakshman" },
+  { id: 12, title: "test", date: "", price: "75", author: "sita" },
+  { id: 13, title: "test", date: "", price: "80", author: "vimla" },
+  { id: 14, title: "test", date: "", price: "90", author: "trivedi" },
+];
